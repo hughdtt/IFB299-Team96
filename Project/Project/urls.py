@@ -23,4 +23,6 @@ urlpatterns = [
     path('searchpage/', include('searchpage.urls')),
     path('admin/', admin.site.urls),
     
+
+    
 ]
