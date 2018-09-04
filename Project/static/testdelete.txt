@@ -1,0 +1,1 @@
+hello this is a test static object you can delete this

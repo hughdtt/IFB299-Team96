@@ -1,0 +1,9 @@
+install MySql server & workbench
+when asked for password use "MyNewPass"
+if already set up you'll have to reset your password to that (easiest option that I know how to do atm)
+to reset password check this out : https://dev.mysql.com/doc/refman/8.0/en/resetting-permissions.html
+if it errors make sure to use the defaults file thing as well
+
+once set up make a database called car_rental
+
+if it is done right you django server shouldnt make errors at u when u start it up
