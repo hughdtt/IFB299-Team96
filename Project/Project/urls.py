@@ -16,13 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include,path
 
+
+
 urlpatterns = [
 
     path('login/', include('login.urls')),
     path('reservation/', include('reservation.urls')),
     path('searchpage/', include('searchpage.urls')),
     path('admin/', admin.site.urls),
+
+]
     
 
-    
-]
+
