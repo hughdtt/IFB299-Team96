@@ -1,0 +1,37 @@
+{% extends 'search/layout.html' %}
+
+<!-- Searchpage title -->
+{% block title %}
+    Search Page
+{% endblock %}
+
+<!-- Searchpage content -->
+{% block content %}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Make Name</th>
+        <th>Model</th>
+        <th>Series</th>
+        <th>Series Year</th>
+        <th>Price (new)</th>
+        <th>Engine Size</th>
+        <th>Fuel System</th>    
+    </tr>
+    {% for car in Cars %}
+    <tr>
+        <td>{{car.car_id}}</td>
+        <td>{{car.car_makename}}</td>
+        <td>{{car.car_model}}</td>
+        <td>{{car.car_series}}</td>
+        <td>{{car.car_seriesyear}}</td>
+        <td>{{car.car_pricenew}}</td>
+        <td>{{car.car_enginesize}}</td>
+        <td>{{car.car_fuelsystem}}</td>
+    </tr>  
+
+    {% endfor %}
+</table>
+
+    <!-- <img src="https://m.media-amazon.com/images/M/MV5BMzMwYWZkZjctZTU5Ny00MDNiLTlkMmYtNzkyODMwMGUxYzA2XkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_CR0,45,480,270_AL_UX477_CR0,0,477,268_AL_.jpg" /> -->
+{% endblock%}
