@@ -5,3 +5,4 @@ def index(request):
     #return HttpResponse("<h2>Reservations page looking good</h2>")
     return render(request, 'reservation/layout.html')
 
+
