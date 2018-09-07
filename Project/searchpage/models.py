@@ -42,4 +42,4 @@ class Table1(models.Model):
     car_wheelbase = models.CharField(db_column='Car_Wheelbase', max_length=6, blank=True, null=True) 
     
     class Meta:
-        db_table = 'table 1'
+        db_table = 'Rawdata'
