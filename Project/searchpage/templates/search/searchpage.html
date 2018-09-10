@@ -7,7 +7,11 @@
 
 <!-- Searchpage content -->
 {% block content %}
-<table>
+<form method='GET' action=''>
+    <input type='text' name='query' placeholder="Search for vehicles" value='{{ request.GET.query }}'/>
+    <input type='submit' value='Search'/>
+</form>
+<table cellpadding="10">
     <tr>
         <th>ID</th>
         <th>Make Name</th>
@@ -16,20 +20,33 @@
         <th>Series Year</th>
         <th>Price (new)</th>
         <th>Engine Size</th>
-        <th>Fuel System</th>    
+        <th>Fuel System</th>
+        <th>Tank Capacity</th>    
+        <th>Power</th>    
+        <th>Seating Capacity</th>    
+        <th>Standard Transmission</th>    
+        <th>Body Type</th>
+        <th>Drive</th>    
+        <th>Wheelbase</th>    
     </tr>
-    {% for car in Cars %}
-    <tr>
-        <td>{{car.car_id}}</td>
-        <td>{{car.car_makename}}</td>
-        <td>{{car.car_model}}</td>
-        <td>{{car.car_series}}</td>
-        <td>{{car.car_seriesyear}}</td>
-        <td>{{car.car_pricenew}}</td>
-        <td>{{car.car_enginesize}}</td>
-        <td>{{car.car_fuelsystem}}</td>
-    </tr>  
-
+    {% for car in searchedcars %}     
+        <tr>
+            <td>{{car.car_id}}</td>
+            <td>{{car.car_makename}}</td>
+            <td>{{car.car_model}}</td>
+            <td>{{car.car_series}}</td>
+            <td>{{car.car_seriesyear}}</td>
+            <td>{{car.car_pricenew}}</td>
+            <td>{{car.car_enginesize}}</td>
+            <td>{{car.car_fuelsystem}}</td>
+            <td>{{car.car_tankcapacity}}</td>
+            <td>{{car.car_power}}</td>
+            <td>{{car.car_seatingcapacity}}</td>
+            <td>{{car.car_standardtransmission}}</td>
+            <td>{{car.car_bodytype}}</td>
+            <td>{{car.car_drive}}</td>
+            <td>{{car.car_wheelbase}}</td>
+        </tr>
     {% endfor %}
 </table>
 
