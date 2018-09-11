@@ -1,1 +1,22 @@
-{% block title %}<h1>{{ section.title }}</h1>{% endblock %}
+<html>
+<head>
+            <title>{% block title %}Car Rental Site {% endblock %}</title>
+</head>
+
+<body>
+    <div id="Sidebar">
+        {% block sidebar %}
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login/">Login</a></li>
+            <li><a href="/reservation/">Reservation</a></li>
+        </ul>
+        {% endblock %}
+    </div>
+    <div id="Content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>
