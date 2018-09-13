@@ -24,7 +24,7 @@
       <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="{% static 'reservation/img/bootstrap-solid.svg' %}" alt="" width="72" height="72">
         <h2>Online Reservation Form</h2>
-        <p class="lead">To reserve seats please complete and submit the booking form</p>
+        <p class="lead">To reserve a car please complete and submit the booking form</p>
       </div>
 
       <div class="row">
@@ -110,16 +110,6 @@
             </div>
 
             <div class="row">
-              <!-- <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country" required>
-                  <option selected>Choose...</option>
-                  <option value="1">Australia</option>
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-              </div> -->
               <div class="col-md-4 mb-3">
                 <label for="state">State</label>
                 <select class="custom-select d-block w-100" id="state" required>
@@ -156,62 +146,100 @@
             </div>
             <hr class="mb-4">
 
-            <h4 class="mb-3">Payment</h4>
+            <h4 class="mb-3">Payment</h4> 
 
-            <div class="d-block my-3">
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="options" id="option1" autocomplete="off" checked> Credit Card
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="options" id="option2" autocomplete="off"> Paypal
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="options" id="option3" autocomplete="off"> Cash Payment
-                </label>
+            <!-- PAYMENT FORM -->
+
+            <!-- NAV LIST -->
+            <div class="mb-3">
+            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                <i class="fa fa-credit-card"></i> Credit Card</a></li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
+                <i class="fab fa-paypal"></i>  Paypal</a></li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#nav-tab-cash">
+                <i class="fa fa-university"></i>  Cash Payment</a></li>
+            </ul>
+
+            <!-- CREDIT CARD CONTENT -->
+            <div class="tab-content">
+            <div class="tab-pane fade show active" id="nav-tab-card">
+              <form role="form">
+              <div class="form-group">
+                <label for="username">Full name (on the card)</label>
+                <input type="text" class="form-control" name="username" placeholder="" required="">
+              </div> 
+
+              <div class="form-group">
+                <label for="cardNumber">Card number</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" name="cardNumber" placeholder="">
+                  <div class="input-group-append">
+                    <span class="input-group-text text-muted">
+                      <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>   
+                      <i class="fab fa-cc-mastercard"></i> 
+                    </span>
+                  </div>
+                </div>
+              </div> 
+
+             <div class="row"> 
+                  <div class="col-sm-8">
+                      <div class="form-group">
+                          <label><span class="hidden-xs">Expiration</span> </label>
+                        <div class="input-group">
+                          <input type="number" class="form-control" placeholder="MM" name="">
+                            <input type="number" class="form-control" placeholder="YY" name="">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-4">
+                      <div class="form-group">
+                          <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                          <input type="number" class="form-control" required="">
+                      </div> 
+                  </div>
               </div>
+              <button class="subscribe btn btn-primary btn-block" type="submit"> Confirm your checkout </button>
+              </form>
+            </div> 
+
+            <!-- PAYPAL CONTENT --> 
+            <div class="tab-pane fade" id="nav-tab-paypal">
+            <p>Paypal is easiest way to pay online</p>
+            <p>
+            <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Log in my Paypal </button>
+            </p>
+            <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. </p>
             </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="cc-name">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                <small class="text-muted">Full name as displayed on card</small>
-                <div class="invalid-feedback">
-                  Name on card is required
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="cc-number">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                <div class="invalid-feedback">
-                  Credit card number is required
-                </div>
-              </div>
+
+            <!-- CASH PAYMENT CONTENT -->
+            <div class="tab-pane fade" id="nav-tab-cash">
+            <p>For cash payment, read below.</p>
+            <p>
+            <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Give me a receipt! </button>
+            </p>
+            <p><strong>Note:</strong> Your reservation will be held for 5 days before cancelling order. </p>
+            </div> 
+            </div> 
+
             </div>
-            <div class="row">
-              <div class="col-md-3 mb-3">
-                <label for="cc-expiration">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                <div class="invalid-feedback">
-                  Expiration date required
-                </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="cc-cvv">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                <div class="invalid-feedback">
-                  Security code required
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+          </div>
           </form>
-        </div>
-      </div>
+          </div>
+          </li>
+          </ul>
+          </div>
+          </div>
+
+      <!-- Footer -->
 
       <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2017-2018 Company Name</p>
+        <p class="mb-1">&copy; 2017-2018 Team96</p>
         <ul class="list-inline">
           <li class="list-inline-item"><a href="#">Privacy</a></li>
           <li class="list-inline-item"><a href="#">Terms</a></li>
