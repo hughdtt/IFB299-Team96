@@ -3,15 +3,16 @@
 from searchpage.models import Table1
 from django.shortcuts import render
 from django.db.models import Q
+from django.db import connection
 
 
 # Create your views here.
-"""
+
 def index(request):
     #return HttpResponse("<h1>Seachpage title test")
     carData = Table1.objects.all()  
     return render(request, 'search/searchpage.html', {'Cars': carData})
-"""
+
 
 def search(request):
     query = request.GET.get("query")

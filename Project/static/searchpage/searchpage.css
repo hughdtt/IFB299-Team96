@@ -1,0 +1,19 @@
+tr:nth-child(even) {
+    background-color: #c5cddb;
+}
+td, th {
+    border :#c5cddb;
+}
+table {
+    border-collapse: collapse;
+    table-layout: fixed;               
+}
+
+#title {
+    letter-spacing: 10px;
+}
+
+#querytext {
+    width: 50%;
+    margin: 0 auto;
+}
