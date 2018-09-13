@@ -19,7 +19,8 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-
+    
+    path('accountcreation/', include('accountcreation.urls')),
     path('reservation/', include('reservation.urls')),
     path('searchpage/', include('searchpage.urls')),
     path('account/', include('account.urls')),

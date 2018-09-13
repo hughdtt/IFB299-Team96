@@ -1,0 +1,54 @@
+<!-- templates/accountregister.html -->
+{% extends 'base.html' %}
+{%block content %}
+<h1 align="center">Welcome to 96 Cars Account Registration Page!</h1>
+
+    <p align="center">Please fill in this form to create an account.</p>
+    <hr>
+    
+	<label for="first name"><b>Full Name</b></label>
+    <input type="text" placeholder="Enter Full Name" name="first-name" required>
+    <hr>
+    
+    <label for="dob"><b>Date of Birth</b></label>
+    <input type="date" placeholder="Enter Date of Birth" name="dob" required>
+    <hr>
+    
+    <label for="gender"><b>Gender</b></label>
+    <input type="text" placeholder="Enter Gender" name="gender" required>
+    <hr>
+    
+    <label for="email"><b>Email Address</b></label>
+    <input type="email" placeholder="Enter Email" name="email" required>
+	<hr>
+    
+    <label for="address"><b>Home Address</b></label>
+    <input type="text" placeholder="Enter Home Address" name="address" required>
+    <hr>
+    
+	<label for="contact number"><b>Primary Contact Number</b></label>
+    <input type="tel" placeholder="Enter Phone Number" name="contact-number" required>
+	<hr>
+    
+    <label for="Occupation"><b>Occupation</b></label>
+    <input type="text" placeholder="Enter Occupation" name="occupation" required>
+    <hr>
+    
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+	<hr>
+
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+    <hr>
+
+    <label>
+    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+
+<div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
+      </div>
+
+{% endblock %}
