@@ -1,0 +1,15 @@
+<html>
+<head>
+            <title>{% block title %}Car Rental Site {% endblock %}</title>
+</head>
+
+<body>
+    <div id="row">
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</div>
+</form>
+</body>
+</html>
