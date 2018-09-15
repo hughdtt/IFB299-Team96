@@ -48,16 +48,24 @@ def importthedata():
         a = 0
         for row in datareader:   
             if(a > 0):
-                print(row[20])
-                obj,_ = Customers.objects.get_or_create(
-                    customer_id = row[16],
-                    customer_name = row[17],
-                    customer_phone = row[18],
-                    customer_address = row[19],
-                    customer_birthday = datetime.datetime.strptime(row[20],'%d/%m/%Y').strftime('%Y-%m-%d'),
-                    customer_occupation = row[21],
-                    customer_gender = row[22],
-                )
-                obj.save()
-        a += 1
+                
+                exists = False
+                if Customers.objects.filter(customer_id=row[16]).exists():
+                    exists = True
+                if(not exists):
+                    print("Now adding:" + "|" + row[16] + "|" + row[17] + "|" + row[18] + "|" + row[19] + "|" + row[20] + "|" + row[21] + "|" + row[22])
+                    obj= Customers(
+                        customer_id = row[16],
+                        customer_name = row[17],
+                        customer_phone = row[18],
+                        customer_address = row[19],
+                        customer_birthday = datetime.datetime.strptime(row[20],'%d/%m/%Y').strftime('%Y-%m-%d'),
+                        customer_occupation = row[21],
+                        customer_gender = row[22]
+                    )
+                    obj.save()
+                    
+                
+            a += 1
+        
         
