@@ -14,16 +14,9 @@ class Customers(models.Model):
     def __str__(self):
         return str(self.customer_id) + ":" + self.customer_name
 
-class Orders(models.Model):
-    order_id = models.IntegerField(primary_key=True)
-    order_createdate = models.DateField()
-    order_pickupdate = models.DateField()
-    order_pickupstore = models.ForeignKey('Stores',on_delete=models.CASCADE)
-    order_returnstore = models.ForeignKey('Stores',on_delete=models.CASCADE)
-    order_customer = models.ForeignKey('Customers',on_delete=models.CASCADE)
-    order_car = models.ForeignKey('Cars',on_delete=models.CASCADE)
 
-class Store(models.Model):
+
+class Stores(models.Model):
     store_id = models.IntegerField(primary_key=True)
     store_address = models.CharField(max_length = 200)
     store_phone = models.CharField(max_length = 20)
@@ -45,3 +38,11 @@ class Cars(models.Model):
     car_bodytype = models.CharField(max_length = 20)
     car_wheelbase = models.CharField(max_length=10)
     
+class Orders(models.Model):
+    order_id = models.IntegerField(primary_key=True)
+    order_createdate = models.DateField()
+    order_pickupdate = models.DateField()
+    order_pickupstore = models.ForeignKey(Stores,related_name='PickUpStore', on_delete=models.CASCADE)
+    order_returnstore = models.ForeignKey(Stores,related_name='ReturnStore', on_delete=models.CASCADE)
+    order_customer = models.ForeignKey(Customers, on_delete=models.CASCADE)
+    order_car = models.ForeignKey(Cars, on_delete=models.CASCADE)

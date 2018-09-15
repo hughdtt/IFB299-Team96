@@ -25,6 +25,7 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
+    path('dataimport/' , include('dataimport.urls'), name='dataimport')
 
 ]
     

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'searchpage',
     'account',
     'templates',
+    'dataimport',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
