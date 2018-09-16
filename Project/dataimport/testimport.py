@@ -48,7 +48,8 @@ def importthedata():
         a = 0
         for row in datareader:   
             if(a > 0):
-                
+
+                # Adding Customers
                 exists = False
                 if Customers.objects.filter(customer_id=row[16]).exists():
                     exists = True
@@ -64,6 +65,85 @@ def importthedata():
                         customer_gender = row[22]
                     )
                     obj.save()
+
+                # Adding Cars
+                exists = False
+                if Cars.objects.filter(car_id=row[23]).exists():
+                    exists = True
+                    print("Car already exists")
+                if(not exists):
+                    msg = "Now adding: |"
+                    for x in range(23, 38):
+                        msg = msg + row[x] + "|"
+                    print(msg)
+
+                    if(row[27] == "NULL"):
+                        row[27] = "0"
+
+                    if(row[28] == "NULL"):
+                        row[28] = "0"
+
+                    if(row[33] == "NULL"):
+                        row[33] = "0"
+
+                    obj2 = Cars(
+                        car_id = row[23],
+                        car_make = row[24],
+                        car_model = row[25],
+                        car_series = row[26],
+                        car_seriesyear = row[27],
+                        car_pricenew = row[28],
+                        car_enginesize = row[29],
+                        car_fuelsystem = row[30],
+                        car_tankcapacity = row[31],
+                        car_power = row[32],
+                        car_seatingcapacity = row[33],
+                        car_standardtransmission = row[34],
+                        car_bodytype = row[35],
+                        car_drive = row[36],
+                        car_wheelbase = row[37]
+                    )
+                    obj2.save()
+                    
+                # Adding Stores (pick up)
+                exists = False
+                if Stores.objects.filter(store_id=row[3]).exists():
+                    exists = True
+                    print("Store(pickup) already exists")
+                if(not exists):
+                    msg = "Now adding(pickup): |"
+                    for x in range(3, 9):
+                        msg = msg + row[x] + "|"
+                    print(msg)
+                    obj3 = Stores(
+                        store_id = row[3],
+                        store_name = row[4],
+                        store_address = row[5],
+                        store_phone = row[6],
+                        store_city = row[7],
+                        store_state = row[8],
+                    )
+                    obj3.save()
+
+                    # Adding Stores (return)
+                exists = False
+                if Stores.objects.filter(store_id=row[10]).exists():
+                    exists = True
+                    print("Store(return) already exists")
+                if(not exists):
+                    msg = "Now adding(return): |"
+                    for x in range(10, 16):
+                        msg = msg + row[x] + "|"
+                    print(msg)
+                    obj3 = Stores(
+                        store_id = row[10],
+                        store_name = row[11],
+                        store_address = row[12],
+                        store_phone = row[13],
+                        store_city = row[14],
+                        store_state = row[15],
+                    )
+                    obj3.save()
                     
                 
             a += 1
