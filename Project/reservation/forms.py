@@ -1,4 +1,9 @@
 from django import forms
+from dataimport.models import *
 
-class NameForm(forms.Form):
-    your_name = forms.CharField(label='Your name', max_length=100)
+class StoreForm(forms.Form):
+    class Meta:
+    	model = Stores
+    	fields = [
+    		'name'
+    	]
