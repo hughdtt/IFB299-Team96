@@ -1,27 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.template.response import TemplateResponse
 
 from .forms import NameForm
+from dataimport.models import *
+from dataimport.testimport import importthedata
 
 def index(request):
-    #return HttpResponse("<h2>Reservations page looking good</h2>")
-    return render(request, 'reservation/index.html')
+	data = Cars.objects.get(car_make = "HONDA")
+	print(data.car_make)
+	return TemplateResponse(request, 'reservation/index.html', {"data": data})
 
-def confirm_res(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = NameForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return render(request, 'reservation/thanks.html')
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = NameForm()
 
-    return render(request, 'reservation/tester.html', {'form': form})
+
+
 
