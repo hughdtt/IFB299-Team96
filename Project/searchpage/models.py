@@ -43,3 +43,5 @@ class Table1(models.Model):
     
     class Meta:
         db_table = 'Rawdata'
+
+
