@@ -1,14 +1,18 @@
 from django.shortcuts import render
-from django.template.response import TemplateResponse
+from django.shortcuts import render
 
-from .forms import NameForm
+from .forms import StoreForm
 from dataimport.models import *
 from dataimport.testimport import importthedata
 
 def index(request):
-	data = Cars.objects.get(car_make = "HONDA")
-	print(data.car_make)
-	return TemplateResponse(request, 'reservation/index.html', {"data": data})
+	obj = Cars.objects.get(car_id = 15400 )
+	obj2 = Stores.objects.all()
+	context = {
+		'car' : obj,
+		'store' : obj2
+		}
+	return render(request, 'reservation/index.html', context)
 
 
 
