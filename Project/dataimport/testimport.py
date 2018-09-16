@@ -48,7 +48,8 @@ def importthedata():
         a = 0
         for row in datareader:   
             if(a > 0):
-                
+
+                # Adding Customers
                 exists = False
                 if Customers.objects.filter(customer_id=row[16]).exists():
                     exists = True
@@ -65,6 +66,7 @@ def importthedata():
                     )
                     obj.save()
 
+                # Adding Cars
                 exists = False
                 if Cars.objects.filter(car_id=row[23]).exists():
                     exists = True
@@ -102,6 +104,46 @@ def importthedata():
                         car_wheelbase = row[37]
                     )
                     obj2.save()
+                    
+                # Adding Stores (pick up)
+                exists = False
+                if Stores.objects.filter(store_id=row[3]).exists():
+                    exists = True
+                    print("Store(pickup) already exists")
+                if(not exists):
+                    msg = "Now adding(pickup): |"
+                    for x in range(3, 9):
+                        msg = msg + row[x] + "|"
+                    print(msg)
+                    obj3 = Stores(
+                        store_id = row[3],
+                        store_name = row[4],
+                        store_address = row[5],
+                        store_phone = row[6],
+                        store_city = row[7],
+                        store_state = row[8],
+                    )
+                    obj3.save()
+
+                    # Adding Stores (return)
+                exists = False
+                if Stores.objects.filter(store_id=row[10]).exists():
+                    exists = True
+                    print("Store(return) already exists")
+                if(not exists):
+                    msg = "Now adding(return): |"
+                    for x in range(10, 16):
+                        msg = msg + row[x] + "|"
+                    print(msg)
+                    obj3 = Stores(
+                        store_id = row[10],
+                        store_name = row[11],
+                        store_address = row[12],
+                        store_phone = row[13],
+                        store_city = row[14],
+                        store_state = row[15],
+                    )
+                    obj3.save()
                     
                 
             a += 1

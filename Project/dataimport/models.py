@@ -18,6 +18,7 @@ class Customers(models.Model):
 
 class Stores(models.Model):
     store_id = models.IntegerField(primary_key=True)
+    store_name = models.CharField(max_length = 200)
     store_address = models.CharField(max_length = 200)
     store_phone = models.CharField(max_length = 20)
     store_city = models.CharField(max_length = 200)
