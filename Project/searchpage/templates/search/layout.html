@@ -27,7 +27,11 @@
             }
 
             #querytext {
-                font-size: 30px;              
+                font-size: 30px; 
+                align: center;            
+            }
+            #cardtext.cardtext {
+                padding-left:10px;
             }
         </style>
 
@@ -66,49 +70,101 @@
         </nav>
             <p><br/></p>
 
-            <div class="container">
-            <form method='GET' action=''>
-                <div class="py-5" id="querytext">
-                    <input type='text' name='query' placeholder="Search for vehicles" value='{{ request.GET.query }}'/>
-                </div>
-                
-                    <input type='submit' value='Search'/>
-
-                    <div class="form-group col-md-8">                       
-                            <select id="pickupStoreName" class="form-control">
-                            <option ></option>
-                            <option selected>Pickup Store...</option>
-                            {% for car in searchedcars %}
-                            <option>{{ car.pickup_store_name }}</option>
-                            {% endfor %}
+                <form method='GET' action=''>
+                    <div class="pt-5 text-center rounded" id="querytext">                   
+                        <input class="text-center rounded border border-dark" type='text' name='query' placeholder="Search for vehicles" value='{{ request.GET.query }}'/>
+                    </div>
+                      
+                    <div class="container"> 
+                                                      
+                    <div class="form-inline py-3 b border-bottom border-white ">                       
+                            <select id="pickupStoreName" class="form-control col-lg-3 col-md-4">                              
+                                <option value="" disabled selected>Store Name...</option>
+                                {% for car in carstore %}
+                                <option>{{ car.store_name }}</option>
+                                {% endfor %}
                             </select>
 
+                            <select id="carMake" name='dropdownMake' class="form-control col-lg-3 col-md-4">
+                                <option value="" disabled selected>Make...</option>
+                                {% for car in carmake %}
+                                <option value="{{ car.car_make }}">{{ car.car_make }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <select id="carModel" name='dropdownModel' class="form-control col-lg-3 col-md-4">
+                                <option value="" disabled selected>Model...</option>
+                                {% for car in carmodel %}
+                                <option value='{{ car.car_model }}'>{{ car.car_model }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <select id="carSeries" name='dropdownSeries' class="form-control col-lg-3 col-md-4">
+                                    <option value="" disabled selected>Series...</option>
+                                    {% for car in carseries %}
+                                    <option>{{ car.car_series }}</option>
+                                    {% endfor %}
+                                </select>
+
+                            <select id="carYear" name='dropdownYear' class="form-control col-lg-3 col-md-4">
+                                <option value="" disabled selected>Year...</option>
+                                {% for car in caryear %}
+                                <option>{{ car.car_seriesyear }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <select id="carSeats" name='dropdownSeats' class="form-control col-lg-3 col-md-4">
+                                <option value="" disabled selected>Seats...</option>
+                                {% for car in carseats %}
+                                <option>{{ car.car_seatingcapacity }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <select id="carTransmission" name='dropdownTransmission' class="form-control col-lg-3 col-md-4">
+                                <option value="" disabled selected>Transmission...</option>
+                                {% for car in cartransmission %}
+                                <option>{{ car.car_standardtransmission }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <select id="carDrive" name='dropdownDrive' class="form-control col-lg-3 col-md-4">
+                                <option value="" disabled selected>Drive...</option>
+                                {% for car in cardrive %}
+                                <option>{{ car.car_drive }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <input class="my-4 py-3 px-5 rounded text-center col-lg-4 col-md-6 offset-lg-4 offset-md-3" type="submit" value="Submit">
             </form>
+            <hr>
             </div>
-            <div class="table table-responsive">
-            <table class="table" cellpadding="10">
-                <tr>
-                    <th>Pickup Store</th>
-                    <th>Make Name</th>
-                    <th>Model</th>
-                    <th>Series</th>
-                    <th>Series Year</th>
-                    <th>Transmission</th>      
-                </tr>
-                {% for car in searchedcars %}     
-                    <tr>
-                        <td>{{car.pickup_store_name}}</td>
-                        <td>{{car.car_makename}}</td>
-                        <td>{{car.car_model}}</td>
-                        <td>{{car.car_series}}</td>
-                        <td>{{car.car_seriesyear}}</td>
-                        <td>{{car.car_standardtransmission}}</td> 
-                    </tr>
-                {% endfor %}
-            </table>
-            </div>
+
+            <div class="row">
+                {% for car in searchedcars %}
+                    <div class="col-sm-12 col-md-12 col-lg-6 py-2">
+                        <a href="#" class="text-white" style="text-decoration: none;">
+                        <div class="card bg-secondary border-dark">
+                            <div class="card-block"  style="padding: 20px">
+                                <h3 class="card-title">{{ car.car_make }} {{ car.car_model }}</h3>
+                                <h4 class="card-title">{{ car.car_series }} {{ car.car_seriesyear }}</h4>
+
+                                <div class="card-text">
+                                    {{ car.car_bodytype }} | {{ car.car_standardtransmission}} | Seats {{ car.car_seatingcapacity }}
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                {% endfor %}   
+          </div>
         </div>
     </body>
+
+    <script>
+    function carmodel() {
+        document.getElementById("carModel").value = '{{ request.GET.dropdownModel }}';
+    }
+    </script>
     
     <!-- Bootstrap core JavaScript
     ================================================== -->
