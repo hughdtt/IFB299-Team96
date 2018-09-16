@@ -2,87 +2,114 @@
 <!DOCTYPE html>
 <html> 
     <head> 
+        <style>
+            tr:nth-child(even) {
+                background-color: #c5cddb;
+            }
+            td, th {
+                border :#c5cddb;
+            }
+            .table {
+           
+            }
+            
+            /*
+            .container {
+   
+                justify-content: center;
+                align-items: center;
+            }
+            */
+            
+
+            #title {
+                letter-spacing: 10px;
+            }
+
+            #querytext {
+                font-size: 30px;              
+            }
+        </style>
 
         <title>Search Page</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="{% static '/reservation/css/bootstrap.css' %}" rel="stylesheet">
-        <link href="{% static '/searchpage/searchpage.css' %}" rel="stylesheet">
-
-
+        
             
     </head>
     <body class="bg-light">
-        <!-- basic navbar -->
-        <nav class="navbar navbar-expand">               
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul id="menu-main-nav" class="navbar-nav nav-fill w-100">
-                    <li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
-                    <li class="nav-item"><a href="/searchpage" class="nav-link">SEARCH</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">PROFILE</a></li>
-                    <li class="nav-item"><a href="/login" class="nav-link">LOGIN</a></li>
-                    <li class="nav-item"><a href="/accountcreation" class="nav-link">REGISTER</a></li>
-                </ul>
-            </div>                    
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Search</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/account/login">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/account/register">Register</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </nav>
+            <p><br/></p>
 
-    
-        <form method='GET' action=''>
-            <div id="querytext">
-                <input type='text' name='query' placeholder="Search for vehicles" value='{{ request.GET.query }}'/>
-            
-                <input type='submit' value='Search'/>
+            <div class="container">
+            <form method='GET' action=''>
+                <div class="py-5" id="querytext">
+                    <input type='text' name='query' placeholder="Search for vehicles" value='{{ request.GET.query }}'/>
+                </div>
+                
+                    <input type='submit' value='Search'/>
 
-                <div class="form-group col-md-8">                       
-                        <select id="pickupStoreName" class="form-control">
-                          <option ></option>
-                          <option selected>Pickup Store...</option>
-                          {% for car in searchedcars %}
-                          <option>{{ car.pickup_store_name }}</option>
-                          {% endfor %}
-                        </select>
+                    <div class="form-group col-md-8">                       
+                            <select id="pickupStoreName" class="form-control">
+                            <option ></option>
+                            <option selected>Pickup Store...</option>
+                            {% for car in searchedcars %}
+                            <option>{{ car.pickup_store_name }}</option>
+                            {% endfor %}
+                            </select>
 
-        </form>
-        
-        <table cellpadding="10">
-            <tr>
-                <th>ID</th>
-                <th>Make Name</th>
-                <th>Model</th>
-                <th>Series</th>
-                <th>Series Year</th>
-                <th>Price (new)</th>
-                <th>Engine Size</th>
-                <th>Fuel System</th>
-                <th>Tank Capacity</th>    
-                <th>Power</th>    
-                <th>Seating Capacity</th>    
-                <th>Standard Transmission</th>    
-                <th>Body Type</th>
-                <th>Drive</th>    
-                <th>Wheelbase</th>    
-            </tr>
-            {% for car in searchedcars %}     
+            </form>
+            </div>
+            <div class="table table-responsive">
+            <table class="table" cellpadding="10">
                 <tr>
-                    <td>{{car.car_id}}</td>
-                    <td>{{car.car_makename}}</td>
-                    <td>{{car.car_model}}</td>
-                    <td>{{car.car_series}}</td>
-                    <td>{{car.car_seriesyear}}</td>
-                    <td>{{car.car_pricenew}}</td>
-                    <td>{{car.car_enginesize}}</td>
-                    <td>{{car.car_fuelsystem}}</td>
-                    <td>{{car.car_tankcapacity}}</td>
-                    <td>{{car.car_power}}</td>
-                    <td>{{car.car_seatingcapacity}}</td>
-                    <td>{{car.car_standardtransmission}}</td>
-                    <td>{{car.car_bodytype}}</td>
-                    <td>{{car.car_drive}}</td>
-                    <td>{{car.car_wheelbase}}</td>
+                    <th>Pickup Store</th>
+                    <th>Make Name</th>
+                    <th>Model</th>
+                    <th>Series</th>
+                    <th>Series Year</th>
+                    <th>Transmission</th>      
                 </tr>
-            {% endfor %}
-        </table>
+                {% for car in searchedcars %}     
+                    <tr>
+                        <td>{{car.pickup_store_name}}</td>
+                        <td>{{car.car_makename}}</td>
+                        <td>{{car.car_model}}</td>
+                        <td>{{car.car_series}}</td>
+                        <td>{{car.car_seriesyear}}</td>
+                        <td>{{car.car_standardtransmission}}</td> 
+                    </tr>
+                {% endfor %}
+            </table>
+            </div>
+        </div>
     </body>
+    
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
