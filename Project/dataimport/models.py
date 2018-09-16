@@ -23,6 +23,8 @@ class Stores(models.Model):
     store_phone = models.CharField(max_length = 20)
     store_city = models.CharField(max_length = 200)
     store_state = models.CharField(max_length = 50)
+    def __str__(self):
+        return str(self.store_id) + ":" + self.store_name
 
 class Cars(models.Model):
     car_id = models.IntegerField(primary_key=True)
@@ -40,6 +42,8 @@ class Cars(models.Model):
     car_bodytype = models.CharField(max_length = 20)
     car_drive = models.CharField(max_length = 5)
     car_wheelbase = models.CharField(max_length=10)
+    def __str__(self):
+        return str(self.car_id) + ":" + self.car_make
 
 class Orders(models.Model):
     order_id = models.IntegerField(primary_key=True)
