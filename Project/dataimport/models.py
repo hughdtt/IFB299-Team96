@@ -49,6 +49,7 @@ class Orders(models.Model):
     order_id = models.IntegerField(primary_key=True)
     order_createdate = models.DateField()
     order_pickupdate = models.DateField()
+    order_returndate = models.DateField()
     order_pickupstore = models.ForeignKey(Stores, related_name='PickUpStore', on_delete=models.CASCADE)
     order_returnstore = models.ForeignKey(Stores, related_name='ReturnStore', on_delete=models.CASCADE)
     order_customer = models.ForeignKey(Customers, on_delete=models.CASCADE)
