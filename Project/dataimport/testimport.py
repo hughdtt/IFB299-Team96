@@ -64,6 +64,44 @@ def importthedata():
                         customer_gender = row[22]
                     )
                     obj.save()
+
+                exists = False
+                if Cars.objects.filter(car_id=row[23]).exists():
+                    exists = True
+                    print("Car already exists")
+                if(not exists):
+                    msg = "Now adding: |"
+                    for x in range(23, 38):
+                        msg = msg + row[x] + "|"
+                    print(msg)
+
+                    if(row[27] == "NULL"):
+                        row[27] = "0"
+
+                    if(row[28] == "NULL"):
+                        row[28] = "0"
+
+                    if(row[33] == "NULL"):
+                        row[33] = "0"
+
+                    obj2 = Cars(
+                        car_id = row[23],
+                        car_make = row[24],
+                        car_model = row[25],
+                        car_series = row[26],
+                        car_seriesyear = row[27],
+                        car_pricenew = row[28],
+                        car_enginesize = row[29],
+                        car_fuelsystem = row[30],
+                        car_tankcapacity = row[31],
+                        car_power = row[32],
+                        car_seatingcapacity = row[33],
+                        car_standardtransmission = row[34],
+                        car_bodytype = row[35],
+                        car_drive = row[36],
+                        car_wheelbase = row[37]
+                    )
+                    obj2.save()
                     
                 
             a += 1

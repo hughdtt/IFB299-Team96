@@ -28,6 +28,7 @@ class Cars(models.Model):
     car_make = models.CharField(max_length = 200)
     car_model = models.CharField(max_length = 200)
     car_series = models.CharField(max_length = 200)
+    car_seriesyear = models.IntegerField()
     car_pricenew = models.IntegerField()
     car_enginesize = models.CharField(max_length = 5)
     car_fuelsystem = models.CharField(max_length = 100)
@@ -36,6 +37,7 @@ class Cars(models.Model):
     car_seatingcapacity = models.IntegerField()
     car_standardtransmission = models.CharField(max_length = 10)
     car_bodytype = models.CharField(max_length = 20)
+    car_drive = models.CharField(max_length = 5)
     car_wheelbase = models.CharField(max_length=10)
 
 class Orders(models.Model):
