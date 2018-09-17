@@ -17,11 +17,22 @@ def index(request):
 		}
 	return render(request, 'reservation/index.html', context)
 
+def details(request):
+	obj = Cars.objects.get(car_id = 15400 )
+	obj2 = Stores.objects.all()
+	context = {
+		'car' : obj,
+		'store' : obj2
+		}
+	return render(request, 'reservation/car_details.html', context)
+
 
 class ReserveCreate(CreateView):
 	model = Reservation
 	form_class = ReserveForm
 	template_name = 'reservation/reservation_form.html'
 
+	def get_absolute_url(self):
+		return reverse('reservation:reservation_form')
 
 

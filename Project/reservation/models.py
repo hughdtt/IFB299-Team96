@@ -13,7 +13,5 @@ class Reservation(models.Model):
 class Meta:
 	ordering = ['store_loc']
 
-def get_absolute_url(self):
-    return reverse('Reservation-detail', args=[str(self.id)])
 
 
