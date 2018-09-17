@@ -17,10 +17,8 @@ def index(request):
 		}
 	return render(request, 'reservation/index.html', context)
 
-def thanks(request):
-	return render(request, 'reservation/thanks.html')
 
-class TesterCreate(CreateView):
+class ReserveCreate(CreateView):
 	model = Reservation
 	form_class = ReserveForm
 	template_name = 'reservation/reservation_form.html'
