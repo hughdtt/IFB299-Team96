@@ -7,7 +7,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <!-- <link rel="icon" href="{% static '/reservation/img/favicon.ico' %}"> -->
 
     <title>Reservation Page</title>
 
@@ -21,184 +20,10 @@
   <body class="bg-light">
 
     <div class="container">
-      <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="{% static 'reservation/img/bootstrap-solid.svg' %}" alt="" width="72" height="72">
-        <h2>Book your car today!</h2>
-        <p class="lead">To reserve a car please complete and submit the booking form</p>
-      </div>
+      {% block content %}
+      {% endblock %}
 
-      <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your Car</span>
-            <span class="badge badge-secondary badge-pill">1</span>
-          </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Car Name</h6>
-                <small class="text-muted">{{ car.car_make }}</small>
-              </div>
-              <span class="text-muted">$99</span>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (AUD)</span>
-              <strong>$99</strong>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Reservation Details</h4>
-          <form class="needs-validation" novalidate>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="Pickup">Pickup Date and Time</label>
-                    <input class="form-control" type="datetime-local" placeholder="Date">
-                <div class="invalid-feedback">
-                  Valid date is required.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="Pickup">Pickup Location</label>
-                    <select class="form-control" name="car_type" >
-                      <option value="" >Select Location</option>
-                      {% for instance in store %}
-                      <option value="{{ instance.store_city }}">{{ instance.store_city }}</option>
-                      {% endfor %}
-                    </select>
-                <div class="invalid-feedback">
-                  Valid Location is required.
-                </div>
-              </div>
-            </div>
-          </form>
-
-          <form class="needs-validation" novalidate>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="Pickup">Return Date and Time</label>
-                    <input class="form-control" type="datetime-local" placeholder="Date">
-                <div class="invalid-feedback">
-                  Valid date is required.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="Pickup">Return Location</label>
-                    <select class="form-control" name="car_type" >
-                      <option value="" >Select Location</option>
-                      {% for instance in store %}
-                      <option value="{{ instance.store_city }}">{{ instance.store_city }}</option>
-                      {% endfor %}
-                    </select>
-                <div class="invalid-feedback">
-                  Valid Location is required.
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="username">Username</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">@</span>
-                </div>
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
-                <div class="invalid-feedback" style="width: 100%;">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-          </form>
-            <hr class="mb-4">
-
-            <h4 class="mb-3">Payment</h4> 
-
-            <!-- PAYMENT FORM -->
-
-            <!-- NAV LIST -->
-            <div class="mb-3">
-            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
-                <i class="fa fa-credit-card"></i> Credit Card</a></li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
-                <i class="fab fa-paypal"></i>  Paypal</a></li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#nav-tab-cash">
-                <i class="fa fa-university"></i>  Cash Payment</a></li>
-            </ul>
-
-            <!-- CREDIT CARD CONTENT -->
-            <div class="tab-content">
-            <div class="tab-pane fade show active" id="nav-tab-card">
-              <form role="form">
-              <div class="form-group">
-                <label for="username">Full name (on the card)</label>
-                <input type="text" class="form-control" name="username" placeholder="" required="">
-              </div> 
-
-              <div class="form-group">
-                <label for="cardNumber">Card number</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" name="cardNumber" placeholder="">
-                  <div class="input-group-append">
-                    <span class="input-group-text text-muted">
-                      <i class="fab fa-cc-visa"></i>   <i class="fab fa-cc-amex"></i>   
-                      <i class="fab fa-cc-mastercard"></i> 
-                    </span>
-                  </div>
-                </div>
-              </div> 
-
-             <div class="row"> 
-                  <div class="col-sm-8">
-                      <div class="form-group">
-                          <label><span class="hidden-xs">Expiration</span> </label>
-                        <div class="input-group">
-                          <input type="number" class="form-control" placeholder="MM" name="">
-                            <input type="number" class="form-control" placeholder="YY" name="">
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-4">
-                      <div class="form-group">
-                          <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-                          <input type="number" class="form-control" required="">
-                      </div> 
-                  </div>
-              </div>
-              <button class="subscribe btn btn-primary btn-block" type="submit"> Confirm your checkout </button>
-              </form>
-            </div> 
-
-            <!-- PAYPAL CONTENT --> 
-            <div class="tab-pane fade" id="nav-tab-paypal">
-            <p>Paypal is easiest way to pay online</p>
-            <p>
-            <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Log in my Paypal </button>
-            </p>
-            <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. </p>
-            </div>
-
-            <!-- CASH PAYMENT CONTENT -->
-            <div class="tab-pane fade" id="nav-tab-cash">
-            <p>For cash payment, read below.</p>
-            <p>
-            <button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Give me a receipt! </button>
-            </p>
-            <p><strong>Note:</strong> Your reservation will be held for 5 days before cancelling order. </p>
-            </div> 
-            </div> 
-
-            </div>
-          </div>
-          </div>
-          </li>
-          </ul>
-          </div>
-          </div>
-
-      <!-- Footer -->
+       <!-- Footer -->
 
       <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">&copy; 2017-2018 Team96</p>
@@ -209,5 +34,35 @@
         </ul>
       </footer>
     </div>
+     <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="{% static '/reservation/js/popper.min.js' %}"></script>
+    <script src="{% static '/reservation/js/bootstrap.js' %}"></script>
+    <script src="{% static '/reservation/js/holder.min.js' %}"></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
 </body>
 </html>

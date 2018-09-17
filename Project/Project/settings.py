@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'account',
     'templates',
     'dataimport',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -84,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
 	'NAME' : 'car_rental',
 	'USER' : 'root',
-	'PASSWORD' :'',
+	'PASSWORD' :'MyNewPass',
 	'HOST' : 'localhost',
 	'PORT' : '3306',
     }
@@ -132,6 +133,8 @@ STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static/') ]
 
 
 LOGIN_REDIRECT_URL = '/account/loggedin'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 
