@@ -142,7 +142,7 @@
             <div class="row">
                 {% for car in searchedcars %}
                     <div class="col-sm-12 col-md-12 col-lg-6 py-2">
-                        <a href="{% url 'reservation:index' %}" class="text-white" style="text-decoration: none;">
+                        <a href="{% url 'reservation:details' car.car_id %}" class="text-white" style="text-decoration: none;">
                         <div class="card bg-secondary border-dark">
                             <div class="card-block"  style="padding: 20px">
                                 <h3 class="card-title">{{ car.car_make }} {{ car.car_model }}</h3>

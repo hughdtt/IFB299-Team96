@@ -19,7 +19,7 @@ def index(request, id):
 	return render(request, 'reservation/index.html', context)
 
 def details(request, id):
-	obj = Cars.objects.get(car_id = id )
+	obj = get_object_or_404(Cars, car_id=id)
 	obj2 = Stores.objects.all()
 	context = {
 		'car' : obj,

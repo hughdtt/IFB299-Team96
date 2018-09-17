@@ -3,7 +3,30 @@
 
 
 {% block content %}
-<p>{{ car.car_make }} {{ car.car_model }}</p>
+<div class="py-5 text-center">
+        <h2>Car Details</h2>
+        <p class="lead">Details Below</p>
+        <ul>
+        	<li class="text-muted">
+        		<h6 class="my-0">{{car.car_make}}</h6>
+        		<h6 class="my-0">{{car.car_model}}</h6>
+        		<h6 class="my-0">{{car.car_series}}</h6>
+        		<h6 class="my-0">{{car.car_seriesyear}}</h6>
+        		<h6 class="my-0">{{car.car_pricenew}}</h6>
+        		<h6 class="my-0">{{car.car_enginesize}}</h6>
+        		<h6 class="my-0">{{car.car_tankcapacity}}</h6>
+        		<h6 class="my-0">{{car.car_power}}</h6>
+        		<h6 class="my-0">{{car.car_seatingcapacity}}</h6>
+        		<h6 class="my-0">{{car.car_standardtransmission}}</h6>
+        		<h6 class="my-0">{{car.car_bodytype}}</h6>
+        		<h6 class="my-0">{{car.car_drive}}</h6>
+        		<h6 class="my-0">{{car.car_wheelbase}}</h6>
+        	</li>
+        </ul>
+        <form action="{% url 'reservation:index' car.car_id %}", method ="POST">
+        	{% csrf_token %}
+        	<input type="submit" value="Reserve">
+       </div>
 
 
 
