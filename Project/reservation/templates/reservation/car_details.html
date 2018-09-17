@@ -3,11 +3,8 @@
 
 
 {% block content %}
-<p>Details</p>
+<p>{{ car.car_make }} {{ car.car_model }}</p>
 
-<form action= "{% url 'index' %}" method="post">
-	{% csrf_token %}
-    {{ form.as_p }}
-	<input type="submit" value="OK">
-</form>
+
+
  {% endblock %}

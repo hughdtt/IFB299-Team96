@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView
+
 
 from .models import *
 from .forms import *
@@ -8,8 +9,8 @@ from .forms import *
 from dataimport.models import *
 from dataimport.testimport import importthedata
 
-def index(request):
-	obj = Cars.objects.get(car_id = 15400 )
+def index(request, id):
+	obj = get_object_or_404(Cars, car_id=id)
 	obj2 = Stores.objects.all()
 	context = {
 		'car' : obj,
@@ -17,8 +18,8 @@ def index(request):
 		}
 	return render(request, 'reservation/index.html', context)
 
-def details(request):
-	obj = Cars.objects.get(car_id = 15400 )
+def details(request, id):
+	obj = Cars.objects.get(car_id = id )
 	obj2 = Stores.objects.all()
 	context = {
 		'car' : obj,
