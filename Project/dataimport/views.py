@@ -7,6 +7,4 @@ def index(request):
     if(request.GET.get('print_btn')):
         print('Button clicked')
         importthedata()
-        a = Customers.objects.get(customer_id = 11011)
-        print(a.customer_name)
     return HttpResponse(render(request, 'dataimport.html'))

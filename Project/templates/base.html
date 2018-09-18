@@ -1,19 +1,58 @@
 <html>
 <head>
             <title>{% block title %}Car Rental Site {% endblock %}</title>
+            <style>
+                ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    overflow: hidden;
+                    background-color: lightgrey;
+                }
+                
+                li {
+                    float: left;
+                }
+                
+                li a {
+                    display: block;
+                    color:#0645AD ;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                }
+                
+                </style>
 </head>
 
 <body>
     <div id="Header">
-        <header align="center">
+        <header>
         {% block sidebar %}
-            <a href="/">Home</a>
-            <a href="/searchpage/">Search Cars</a>
-            <a href="/account/login">Login</a>
-            <a href="/account/register">Create New Account</a>
-            <a href="/reservation/">Reservation</a>
-            <a href="/dataimport/">Data import (remove this perhaps)</a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/searchpage/">Search Cars</a></li>
+
+            {% if user.is_authenticated %}
+                <li><a href="/account/logout">Logout</a></li>
+            {% else %}
+                <li><a href="/account/login">Login</a></li>
+            {% endif %}
+            
+            <li><a href="/account/register">Create New Account</a></li>
+            <li><a href="/reservation/">Reservation</a></li>
+            <li><a href="/dataimport/">Data import (remove this perhaps)</a></li>
+            <!--SEARCH GOES HERE-->
+            <li>
+            {% if user.is_authenticated %}
+                <p> You are signed in as: {{user.username}} </p>
+            {% else %}
+                <p> You are not signed in</p>
+            {% endif %}
+            </li>
+        </ul>
         {% endblock %}       
+        
         </header>
     </div>
     
