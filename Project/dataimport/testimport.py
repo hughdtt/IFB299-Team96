@@ -155,7 +155,7 @@ def importthedata():
                     order_customer = obj1,
                     order_car = obj2
                 )
-                obj4.save()
+                obj5.save()
                 
 
             a += 1

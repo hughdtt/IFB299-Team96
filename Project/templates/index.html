@@ -6,4 +6,12 @@
 
 {% block content %}
 this is the home page
+
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+{% else %}
+  <p>You are not logged in</p>
+{% endif %}
+
+
 {% endblock %}

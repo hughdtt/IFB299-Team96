@@ -4,7 +4,8 @@
 </head>
 
 <body>
-    <div id="Sidebar">
+    <div id="Header">
+        <header align="center">
         {% block sidebar %}
         <ul>
             <li><a href="/">Home</a></li>
@@ -14,8 +15,10 @@
             <li><a href="/reservation/">Reservation</a></li>
             <li><a href="/dataimport/">Data import (remove this perhaps)</a></li>
         </ul>
-        {% endblock %}
+        {% endblock %}       
+        </header>
     </div>
+    
     <div id="Content">
         {% block content %}
 
