@@ -6,23 +6,22 @@
 <div class="py-5 text-center">
         <h2>Car Details</h2>
         <p class="lead">Details Below</p>
-        <ul>
         	<li class="text-muted">
-        		<h6 class="my-0">{{car.car_make}}</h6>
-        		<h6 class="my-0">{{car.car_model}}</h6>
-        		<h6 class="my-0">{{car.car_series}}</h6>
-        		<h6 class="my-0">{{car.car_seriesyear}}</h6>
-        		<h6 class="my-0">{{car.car_pricenew}}</h6>
-        		<h6 class="my-0">{{car.car_enginesize}}</h6>
-        		<h6 class="my-0">{{car.car_tankcapacity}}</h6>
-        		<h6 class="my-0">{{car.car_power}}</h6>
-        		<h6 class="my-0">{{car.car_seatingcapacity}}</h6>
-        		<h6 class="my-0">{{car.car_standardtransmission}}</h6>
-        		<h6 class="my-0">{{car.car_bodytype}}</h6>
-        		<h6 class="my-0">{{car.car_drive}}</h6>
-        		<h6 class="my-0">{{car.car_wheelbase}}</h6>
+        		<h6 class="my-0">Brand: {{car.car_make}}</h6>
+        		<h6 class="my-0">Model: {{car.car_model}}</h6>
+        		<h6 class="my-0">Series: {{car.car_series}}</h6>
+        		<h6 class="my-0">Year: {{car.car_seriesyear}}</h6>
+        		<h6 class="my-0">Price: ${{car.car_pricenew}}</h6>
+        		<h6 class="my-0">Engine Size: {{car.car_enginesize}}</h6>
+        		<h6 class="my-0">Tank Capacity: {{car.car_tankcapacity}}</h6>
+        		<h6 class="my-0">Power: {{car.car_power}}</h6>
+        		<h6 class="my-0">Seating Capacity: {{car.car_seatingcapacity}}</h6>
+        		<h6 class="my-0">Transmission: {{car.car_standardtransmission}}</h6>
+        		<h6 class="my-0">Body Type: {{car.car_bodytype}}</h6>
+        		<h6 class="my-0">Car Drive: {{car.car_drive}}</h6>
+        		<h6 class="my-0">Wheelbase: {{car.car_wheelbase}}</h6>
         	</li>
-        </ul>
+            <hr class="mb-4">
         <form action="{% url 'reservation:index' car.car_id %}", method ="POST">
         	{% csrf_token %}
         	<input type="submit" value="Reserve">
