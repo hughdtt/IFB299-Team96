@@ -49,7 +49,7 @@ def importthedata():
         for row in datareader:   
             if(a > 0):
                 # Adding Customers
-                print("Now adding:" + "|" + row[16] + "|" + row[17] + "|" + row[18] + "|" + row[19] + "|" + row[20] + "|" + row[21] + "|" + row[22])
+                #print("Now adding:" + "|" + row[16] + "|" + row[17] + "|" + row[18] + "|" + row[19] + "|" + row[20] + "|" + row[21] + "|" + row[22])
                 obj1, created1 = Customers.objects.get_or_create(
                     customer_id = row[16],
                     customer_name = row[17],
@@ -65,7 +65,7 @@ def importthedata():
                 msg = "Now adding: |"
                 for x in range(23, 38):
                     msg = msg + row[x] + "|"
-                print(msg)
+                #print(msg)
 
                 if(row[27] == "NULL"):
                     row[27] = "0"
@@ -98,7 +98,7 @@ def importthedata():
                 msg = "Now adding(pickup): |"
                 for x in range(3, 9):
                     msg = msg + row[x] + "|"
-                print(msg)
+                #print(msg)
                 obj3, created3 = Stores.objects.get_or_create(
                     store_id = row[3],
                     store_name = row[4],
@@ -113,7 +113,7 @@ def importthedata():
                 msg = "Now adding(return): |"
                 for x in range(10, 16):
                     msg = msg + row[x] + "|"
-                print(msg)
+                #print(msg)
                 obj4, created4 = Stores.objects.get_or_create(
                     store_id = row[10],
                     store_name = row[11],
@@ -143,7 +143,7 @@ def importthedata():
                 msg = msg + row[10] + "|"
                 msg = msg + row[16] + "|"
                 msg = msg + row[23] + "|"
-                print(msg)
+                #print(msg)
                 
                 obj5, created5 = Orders.objects.get_or_create(
                     order_id = row[0],
