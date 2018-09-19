@@ -31,7 +31,10 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/">Home</a>
                 </li>
-                 {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/account/register">Register</a>
+                </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="/account/logout">Logout</a>
                 </li>
@@ -41,12 +44,7 @@
                   </a>
                 </li>
                   {% endif %}
-                <li class="nav-item">
-                  <a class="nav-link" href="/searchpage/">Search Cars</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/account/register">Register</a>
-                </li>
+
                   {% if user.is_authenticated %}
                       <span class="navbar-text"> You are signed in as: {{user.username}} </span>
                   {% else %}
