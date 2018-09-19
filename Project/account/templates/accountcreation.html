@@ -1,56 +1,92 @@
-<!-- templates/accountregister.html -->
+<!-- templates/accountcreation.html -->
 {% extends 'base.html' %}
 {%block content %}
+
+<html>
+<head>
+<title>Registration Page</title>
+</head>
+
+
+<body>
+
 <h1 align="center">Welcome to 96 Cars Account Registration Page!</h1>
 
-    <p align="center">Please fill in this form to create an account.</p>
-    <hr>
-    
-	<label for="first name"><b>Full Name</b></label>
-    <input type="text" placeholder="Enter Full Name" name="first-name" required>
-    <hr>
-    
-    <label for="dob"><b>Date of Birth</b></label>
-    <input type="date" placeholder="Enter Date of Birth" name="dob" required>
-    <hr>
-    
-    <label for="gender"><b>Gender</b></label>
-    <input type="text" placeholder="Enter Gender" name="gender" required>
-    <hr>
-    
-    <label for="email"><b>Email Address</b></label>
-    <input type="email" placeholder="Enter Email" name="email" required>
-	<hr>
-    
-    <label for="address"><b>Home Address</b></label>
-    <input type="text" placeholder="Enter Home Address" name="address" required>
-    <hr>
-    
-	<label for="contact number"><b>Primary Contact Number</b></label>
-    <input type="tel" placeholder="Enter Phone Number" name="contact-number" required>
-	<hr>
-    
-    <label for="Occupation"><b>Occupation</b></label>
-    <input type="text" placeholder="Enter Occupation" name="occupation" required>
-    <hr>
-    
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-	<hr>
+<p align="center">Please fill in the registration form to create an account.</p>
 
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-    <hr>
+<form action="/" method="post">
 
-    <label>
-    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-    </label>
+<label for="first name">Full Name</label>
+<input type="text" placeholder="Enter Full Name" name="Customer_Name" required>
 
-<form action="/" method = "get">
-<div class="clearfix">
+<br>
+<br>
+
+<label for="dob">Date of Birth</label>
+<input type="date" placeholder="Enter Date of Birth" name="Customer_Birthday" required>
+
+<br>
+<br>
+
+<label for="gender">Gender</label>
+<input type="text" placeholder="Enter Gender" name="Customer_Gender" required>
+
+<br>
+<br>
+
+<label for="email">Email Address</label>
+<input type="email" placeholder="Enter Email" name="Customer_Email" required>
+
+<br>
+<br>
+
+<label for="address">Home Address</label>
+<input type="text" placeholder="Enter Home Address" name="Customer_Address" required>
+
+<br>
+<br>
+
+<label for="contact number">Primary Contact Number</label>
+<input type="tel" placeholder="Enter Phone Number" name="Customer_Phone" required>
+
+<br>
+<br>
+
+<label for="occupation">Occupation</label>
+<input type="text" placeholder="Enter Occupation" name="Customer_Occupation" required>
+    
+<br>
+<br>
+
+<label for="psw">Password</label>
+<input type="password" placeholder="Enter Password" name="Customer_Password" required>
+
+<br>
+<br>
+
+<label for="psw-repeat">Repeat Password</label>
+<input type="password" placeholder="Repeat Password" required>
+
+<br>
+<br>
+
+<label>
+<input type="checkbox" unchecked="checked" name="remember" style="margin-bottom:15px"> Remember me
+</label>
+
+<br>
+
 <button type="submit" value="Submit">Submit</button>
+
+</form>
+
+<form action="/" method="get">
+
 <button type="cancel" value="Cancel">Cancel</button>
 
-      </div>
+
 </form>
+
+</body>
+</html>
 {% endblock %}
