@@ -53,7 +53,7 @@ def importthedata():
                 # Adding Customers  
                 #print("Now adding:" + "|" + row[16] + "|" + row[17] + "|" + row[18] + "|" + row[19] + "|" + row[20] + "|" + row[21] + "|" + row[22])
                 if(User.objects.filter(username=row[16]).exists()):         #checking if django user already exists
-                    #print("user(" + row[16] + ")  to add already exists")
+                    print("user(" + row[16] + ")  to add already exists")
                 else:
                     user = User.objects.create_user(row[16], '', 'password')#otherwise creates the django user (this automatically creates an empty customer entry, linked with django user)
                 user = User.objects.get(username=row[16])       #all these row commands are just different columns of the .csv
