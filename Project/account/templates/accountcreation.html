@@ -1,92 +1,24 @@
 <!-- templates/accountcreation.html -->
-{% extends 'base.html' %}
-{%block content %}
+{% extends 'reservation/layout.html' %}
+{% load static %}
 
-<html>
-<head>
-<title>Registration Page</title>
-</head>
+{% load crispy_forms_tags %}
 
+{% block content %}
+<div class="py-5 text-center">
+        <h2>Welcome to Account Creation</h2>
+        <p class="lead">Please fill out the form below</p>
+      </div>
 
-<body>
-
-<h1 align="center">Welcome to 96 Cars Account Registration Page!</h1>
-
-<p align="center">Please fill in the registration form to create an account.</p>
-
-<form action="/" method="post">{% csrf_token %}
-
-<label for="first name">Full Name:</label>
-<input type="text" placeholder="Enter Full Name" name="Customer_Name" required>
-
-<br>
-<br>
-
-<label for="dob">Date of Birth:</label>
-<input type="date" placeholder="00/00/0000" name="Customer_Birthday" required>
-
-<br>
-<br>
-
-<label for="gender">Gender:</label>
-<input type="text" placeholder="M/F" name="Customer_Gender" required>
-
-<br>
-<br>
-
-<label for="email">Email Address:</label>
-<input type="email" placeholder="Enter Email Address" name="Customer_Email" required>
-
-<br>
-<br>
-
-<label for="address">Home Address:</label>
-<input type="text" placeholder="Enter Home Address" name="Customer_Address" required>
-
-<br>
-<br>
-
-<label for="contact number">Primary Contact Number:</label>
-<input type="tel" placeholder="XXX-XXX-XXX" name="Customer_Phone" required>
-
-<br>
-<br>
-
-<label for="occupation">Occupation:</label>
-<input type="text" placeholder="Enter Occupation" name="Customer_Occupation" required>
     
-<br>
-<br>
-
-<label for="psw">Password:</label>
-<input type="password" placeholder="Enter Password" name="Customer_Password" required>
-
-<br>
-<br>
-
-<label for="psw-repeat">Repeat Password:</label>
-<input type="password" placeholder="Repeat Password" required>
-
-<br>
-<br>
-
-<label>
-<input type="checkbox" unchecked="checked" name="remember" style="margin-bottom:15px"> Remember me
-</label>
-
-<br>
-
-<button type="submit" value="Submit">Submit</button>
-
+<div class="col-md-8 order-md-1">
+<form action='' method="POST">
+	{% csrf_token %}
+	{{form|crispy}}
+	<input type="submit" value="Submit">
 </form>
+</div>
+</div>
 
-<form action="/" method="get">
-
-<button type="cancel" value="Cancel">Cancel</button>
-
-
-</form>
-
-</body>
-</html>
 {% endblock %}
+
