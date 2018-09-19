@@ -16,18 +16,22 @@ class Customers(models.Model):
     customer_birthday = models.DateField(blank=True,null=True)
     customer_occupation = models.CharField(max_length = 30,blank=True,null=True)
     customer_gender = models.CharField(max_length = 5,blank=True,null=True)
-    def __str__(self):
+    def __str__(self):  #Returns the customer's name
         return str(self.customer_name)
 
+#Whenever a user object is created, it creates an accompanying empty customer object, linked to it
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Customers.objects.create(user=instance)
 
+#Whenever a user object is saved, the accompanying customer object is also saved.
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.customers.save()
 
+#Model for store
+#Has fields for ID,name,address,phone,city, and state
 class Stores(models.Model):
     store_id = models.IntegerField(primary_key=True)
     store_name = models.CharField(max_length = 200)
@@ -35,9 +39,11 @@ class Stores(models.Model):
     store_phone = models.CharField(max_length = 20)
     store_city = models.CharField(max_length = 200)
     store_state = models.CharField(max_length = 50)
-    def __str__(self):
+    def __str__(self):  #Returns the store's ID and name
         return str(self.store_id) + ":" + self.store_name
 
+#Model for cars
+#Has fields for ID,make,model, series, and more info about the car.
 class Cars(models.Model):
     car_id = models.IntegerField(primary_key=True)
     car_make = models.CharField(max_length = 200)
@@ -54,9 +60,11 @@ class Cars(models.Model):
     car_bodytype = models.CharField(max_length = 20)
     car_drive = models.CharField(max_length = 5)
     car_wheelbase = models.CharField(max_length=10)
-    def __str__(self):
+    def __str__(self):  #Returns the car's make
         return str(self.car_id) + ":" + self.car_make
 
+#Model for orders
+#Has fields linking it to the pickup store, return store, customer, and car, as well as the dates for creation, pickup, and return.
 class Orders(models.Model):
     order_id = models.IntegerField(primary_key=True)
     order_createdate = models.DateField()
@@ -66,5 +74,5 @@ class Orders(models.Model):
     order_returnstore = models.ForeignKey(Stores, related_name='ReturnStore', on_delete=models.CASCADE)
     order_customer = models.ForeignKey(Customers, on_delete=models.CASCADE)
     order_car = models.ForeignKey(Cars, on_delete=models.CASCADE)
-    def __str__(self):
+    def __str__(self):  #Returns the order's id
         return str(self.order_id) 

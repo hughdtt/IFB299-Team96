@@ -1,3 +1,4 @@
+#Reference for the position of objects within the data.csv
 '''
 0 = Order_ID
 1 = Order_CreateDate
@@ -44,18 +45,18 @@ import csv
 from dataimport.models import *
 from django.contrib.auth.models import User
 def importthedata():      
-    with open('data.csv', newline='') as csvfile:
+    with open('data.csv', newline='') as csvfile:   #Opens the CSV file , with delimiter ','
         datareader = csv.reader(csvfile, delimiter=',')       
         a = 0
-        for row in datareader:   
-            if(a > 0):
-                # Adding Customers
+        for row in datareader:   #Iterates through every row in the CSV file 
+            if(a > 0):  #Ignores the first row, as it contains the heading for the data
+                # Adding Customers  
                 #print("Now adding:" + "|" + row[16] + "|" + row[17] + "|" + row[18] + "|" + row[19] + "|" + row[20] + "|" + row[21] + "|" + row[22])
                 if(User.objects.filter(username=row[16]).exists()):         #checking if django user already exists
-                    print("user(" + row[16] + ")  to add already exists")
+                    #print("user(" + row[16] + ")  to add already exists")
                 else:
                     user = User.objects.create_user(row[16], '', 'password')#otherwise creates the django user (this automatically creates an empty customer entry, linked with django user)
-                user = User.objects.get(username=row[16])       #all these row commands are just different parts of the .csv
+                user = User.objects.get(username=row[16])       #all these row commands are just different columns of the .csv
                 #obj1, created1 = Customers.objects.get_or_create(
                 #    customer_id = user,
                 user.customers.customer_name = row[17]
@@ -82,7 +83,7 @@ def importthedata():
 
                 if(row[33] == "NULL"):
                     row[33] = "0"
-
+                #If the car already exists, obj2 becomes a reference to the car. Otherwise, the car is created then a reference is passed to it.
                 obj2, created2 = Cars.objects.get_or_create(
                     car_id = row[23],
                     car_make = row[24],
@@ -100,7 +101,7 @@ def importthedata():
                     car_drive = row[36],
                     car_wheelbase = row[37]
                 )
-                obj2.save()
+                obj2.save() #Saves car to the database
                 #Adding Stores (pickup)
                 msg = "Now adding(pickup): |"
                 for x in range(3, 9):
@@ -131,17 +132,6 @@ def importthedata():
                 )
                 obj4.save()
                 
-
-                '''
-                0 = Order_ID
-                1 = Order_CreateDate
-                2 = Order_PickupDate
-                3 = Order_PickupStore
-                9 = Order_ReturnDate
-                10 = Order_ReturnStore
-                16 = Customer_ID
-                23 = Car_ID
-                '''
                 # Adding Orders
                 msg = "Now adding: |"
                 for x in range(0, 4):
@@ -151,10 +141,10 @@ def importthedata():
                 msg = msg + row[16] + "|"
                 msg = msg + row[23] + "|"
                 #print(msg)
-                
+                #The orders are done last, as they require the previous objects to have a foreign key reference to.
                 obj5, created5 = Orders.objects.get_or_create(
                     order_id = row[0],
-                    order_createdate = datetime.datetime.strptime(row[1],'%Y%m%d').strftime('%Y-%m-%d'),
+                    order_createdate = datetime.datetime.strptime(row[1],'%Y%m%d').strftime('%Y-%m-%d'),    #Converts the dates in the CSV file to the ones accepted by the database model.
                     order_pickupdate = datetime.datetime.strptime(row[2],'%Y%m%d').strftime('%Y-%m-%d'),
                     order_pickupstore = obj3,
                     order_returndate = datetime.datetime.strptime(row[9],'%Y%m%d').strftime('%Y-%m-%d'),
@@ -165,6 +155,6 @@ def importthedata():
                 obj5.save()
                 
 
-            a += 1
+            a += 1  #counter used just so the first column isn't added.
         
         
