@@ -66,7 +66,7 @@ def importthedata():
                 user.customers.customer_gender = row[22]
                 #)
                 user.save()             #This automatically saves the customer part of the model
-                obj1 = user.customers
+                obj1 = user.customers   #obj1 is now a customer object (you can just do obj1.customer_name = blah etc)
 
                 # Adding Cars
                 msg = "Now adding: |"
@@ -91,7 +91,7 @@ def importthedata():
                     car_seriesyear = row[27],
                     car_pricenew = row[28],
                     car_enginesize = row[29],
-                    car_fuelsystem = row[30],
+                    car_fuelsystem = row[30], 
                     car_tankcapacity = row[31],
                     car_power = row[32],
                     car_seatingcapacity = row[33],

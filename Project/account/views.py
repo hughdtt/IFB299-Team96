@@ -22,6 +22,7 @@ def create(request):
 		}
 	return render(request, 'accountcreation.html', context)
 
+#Used for creating accounts
 class AccountCreationView(TemplateView):
     template_name = 'accountcreation.html'
 

@@ -5,8 +5,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 # Create your models here.
 
+#Model for customer
+#Has fields for name, phone, address, birthday, occupation, and gender
+#Has a one to one link with the built in django user object
 class Customers(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE) #Links customer to user object
     customer_name = models.CharField(max_length = 200,blank=True,null=True)
     customer_phone = models.CharField(max_length=20,blank=True,null=True)
     customer_address = models.CharField(max_length=200,blank=True,null=True)
