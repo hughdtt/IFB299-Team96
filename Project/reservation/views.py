@@ -20,12 +20,16 @@ def index(request, id):
 
 def test(request,id):
 	form = ReserveForm()
+	obj = get_object_or_404(Cars, car_id=id)
+	obj2 = Stores.objects.all()
 	if request.method == "POST":
 		form = ReserveForm(request.POST)
 		if form.is_valid():
 			Orders.objects.create(**form.cleaned_data)
 	context = {
-		'form': form
+		'form': form,
+		'car' : obj,
+		'store' : obj2
 		}
 	return render(request, 'reservation/test.html', context)
 

@@ -13,6 +13,8 @@ class Customers(models.Model):
     customer_birthday = models.DateField(blank=True,null=True)
     customer_occupation = models.CharField(max_length = 30,blank=True,null=True)
     customer_gender = models.CharField(max_length = 5,blank=True,null=True)
+    def __str__(self):
+        return str(self.customer_name)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
