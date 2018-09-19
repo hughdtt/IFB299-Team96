@@ -20,8 +20,7 @@ from django.urls import include,path
 
 urlpatterns = [
     
-    path('reservation/<int:id>', include(('reservation.urls', 'reservation'), namespace='reservation')),
-    path('reservation_form/<int:id>', include(('reservation.urls', 'reservation'), namespace='reservation_form')),
+    path('reservation/<int:id>/', include(('reservation.urls', 'reservation'), namespace='reservation')),
     path('searchpage/', include('searchpage.urls')),
     path('account/', include('account.urls')),
     path('', include('core.urls')),

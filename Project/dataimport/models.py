@@ -61,3 +61,5 @@ class Orders(models.Model):
     order_returnstore = models.ForeignKey(Stores, related_name='ReturnStore', on_delete=models.CASCADE)
     order_customer = models.ForeignKey(Customers, on_delete=models.CASCADE)
     order_car = models.ForeignKey(Cars, on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.order_id) 
