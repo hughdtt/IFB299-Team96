@@ -1,64 +1,107 @@
-<html>
-<head>
-            <title>{% block title %}Car Rental Site {% endblock %}</title>
-            <style>
-                ul {
-                    list-style-type: none;
-                    margin: 0;
-                    padding: 0;
-                    overflow: hidden;
-                    background-color: lightgrey;
-                }
-                
-                li {
-                    float: left;
-                }
-                
-                li a {
-                    display: block;
-                    color:#0645AD ;
-                    text-align: center;
-                    padding: 14px 16px;
-                    text-decoration: none;
-                }
-                
-                </style>
-</head>
-
-<body>
-    <div id="Header">
-        <header>
-        {% block sidebar %}
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/searchpage/">Search Cars</a></li>
-
-            {% if user.is_authenticated %}
-                <li><a href="/account/logout">Logout</a></li>
-            {% else %}
-                <li><a href="/account/login">Login</a></li>
-            {% endif %}
-            
-            <li><a href="/account/register">Create New Account</a></li>
-            <li><a href="/dataimport/">Data import (remove this perhaps)</a></li>
-            <!--SEARCH GOES HERE-->
-            <li>
-            {% if user.is_authenticated %}
-                <p> You are signed in as: {{user.username}} </p>
-            {% else %}
-                <p> You are not signed in</p>
-            {% endif %}
-            </li>
-        </ul>
-        {% endblock %}       
-        
-        </header>
-    </div>
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     
-    <div id="Content">
-        {% block content %}
 
-        {% endblock %}
+    <title>Car Rental Site</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static '/reservation/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static '/reservation/css/form-validation.css' %}" rel="stylesheet">
+  </head>
+
+  <body class="bg-light">
+
+    <div id="Header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/searchpage/">Search</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                 {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/account/logout">Logout</a>
+                </li>
+                  {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/account/login">Login
+                  </a>
+                </li>
+                  {% endif %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/searchpage/">Search Cars</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/account/register">Register</a>
+                </li>
+                  {% if user.is_authenticated %}
+                      <span class="navbar-text"> You are signed in as: {{user.username}} </span>
+                  {% else %}
+                      <span class="navbar-text"> You are not signed in</span>
+                  {% endif %}
+              </ul>
+            </div>
+          </div>
+        </nav>      
     </div>
+
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+
+       <!-- Footer -->
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 Team96</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+    </div>
+     <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="{% static '/reservation/js/popper.min.js' %}"></script>
+    <script src="{% static '/reservation/js/bootstrap.js' %}"></script>
+    <script src="{% static '/reservation/js/holder.min.js' %}"></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
 </body>
 </html>
