@@ -14,7 +14,7 @@
 
 <p align="center">Please fill in the registration form to create an account.</p>
 
-<form action="/" method="post">
+<form action="/" method="post">{% csrf_token %}
 
 <label for="first name">Full Name:</label>
 <input type="text" placeholder="Enter Full Name" name="Customer_Name" required>
