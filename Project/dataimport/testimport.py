@@ -51,11 +51,11 @@ def importthedata():
             if(a > 0):
                 # Adding Customers
                 #print("Now adding:" + "|" + row[16] + "|" + row[17] + "|" + row[18] + "|" + row[19] + "|" + row[20] + "|" + row[21] + "|" + row[22])
-                if(User.objects.filter(username=row[16]).exists()):
+                if(User.objects.filter(username=row[16]).exists()):         #checking if django user already exists
                     print("user(" + row[16] + ")  to add already exists")
                 else:
-                    user = User.objects.create_user(row[16], '', 'password')
-                user = User.objects.get(username=row[16])
+                    user = User.objects.create_user(row[16], '', 'password')#otherwise creates the django user (this automatically creates an empty customer entry, linked with django user)
+                user = User.objects.get(username=row[16])       #all these row commands are just different parts of the .csv
                 #obj1, created1 = Customers.objects.get_or_create(
                 #    customer_id = user,
                 user.customers.customer_name = row[17]
@@ -65,7 +65,7 @@ def importthedata():
                 user.customers.customer_occupation = row[21]
                 user.customers.customer_gender = row[22]
                 #)
-                user.save()
+                user.save()             #This automatically saves the customer part of the model
                 obj1 = user.customers
 
                 # Adding Cars
