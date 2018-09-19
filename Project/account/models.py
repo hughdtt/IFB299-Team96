@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 
-class Customers(models.Model):
+class Customers_old(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     customer_phone = models.CharField(max_length=20)
     customer_address = models.CharField(max_length=200)

@@ -42,6 +42,7 @@
 import datetime
 import csv
 from dataimport.models import *
+from django.contrib.auth.models import User
 def importthedata():      
     with open('data.csv', newline='') as csvfile:
         datareader = csv.reader(csvfile, delimiter=',')       
@@ -50,16 +51,22 @@ def importthedata():
             if(a > 0):
                 # Adding Customers
                 #print("Now adding:" + "|" + row[16] + "|" + row[17] + "|" + row[18] + "|" + row[19] + "|" + row[20] + "|" + row[21] + "|" + row[22])
-                obj1, created1 = Customers.objects.get_or_create(
-                    customer_id = row[16],
-                    customer_name = row[17],
-                    customer_phone = row[18],
-                    customer_address = row[19],
-                    customer_birthday = datetime.datetime.strptime(row[20],'%d/%m/%Y').strftime('%Y-%m-%d'),
-                    customer_occupation = row[21],
-                    customer_gender = row[22]
-                )
-                obj1.save()
+                if(User.objects.filter(username=row[16]).exists()):
+                    print("user(" + row[16] + ")  to add already exists")
+                else:
+                    user = User.objects.create_user(row[16], '', 'password')
+                user = User.objects.get(username=row[16])
+                #obj1, created1 = Customers.objects.get_or_create(
+                #    customer_id = user,
+                user.customers.customer_name = row[17]
+                user.customers.customer_phone = row[18]
+                user.customers.customer_address = row[19]
+                user.customers.customer_birthday = datetime.datetime.strptime(row[20],'%d/%m/%Y').strftime('%Y-%m-%d')
+                user.customers.customer_occupation = row[21]
+                user.customers.customer_gender = row[22]
+                #)
+                user.save()
+                obj1 = user.customers
 
                 # Adding Cars
                 msg = "Now adding: |"
