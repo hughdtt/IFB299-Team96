@@ -24,7 +24,7 @@
                 <h6 class="my-0"></h6>
                 <small class="text-muted">{{ car.car_series }} {{ car.car_seriesyear }}</small>
               </div>
-              <span class="text-muted">$99</span>
+              <span class="text-muted">$99/Week</span>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (AUD)</span>
               <strong>$99</strong>
@@ -34,7 +34,7 @@
 <div class="col-md-8 order-md-1">
 <form action='' method="POST">
 	{% csrf_token %}
-	{{form|crispy}}
+	{% crispy form %}
 	<input type="submit" value="Submit">
 </form>
 </div>

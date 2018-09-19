@@ -75,4 +75,4 @@ class Orders(models.Model):
     order_customer = models.ForeignKey(Customers, on_delete=models.CASCADE)
     order_car = models.ForeignKey(Cars, on_delete=models.CASCADE)
     def __str__(self):  #Returns the order's id
-        return str(self.order_id) 
+        return str(self.order_id) + ":" + str(self.order_createdate) + ":" + str(self.order_customer)
