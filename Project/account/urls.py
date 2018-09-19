@@ -3,6 +3,8 @@ from .views import AccountCreationView
 from django.contrib.auth import views as auth_views
 from . import views
 
+#Adds the login, logout, and register view
+#Uses the built in Django login/logout templates
 urlpatterns = [
     path('loggedin/', views.loggedin, name='loggedin'),
     path('register/', views.create, name='create'),
