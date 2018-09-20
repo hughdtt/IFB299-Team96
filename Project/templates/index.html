@@ -5,13 +5,18 @@
 
 
 {% block content %}
-this is the home page
 
-{% if user.is_authenticated %}
-  Hi {{ user.username }}!
-{% else %}
-  <p>You are not logged in</p>
-{% endif %}
+<div class="py-5 text-center">
+        <h2>Welcome to the Car Rental Site!!</h2>
+        <p class="lead">
+        {% if user.is_authenticated %}
+		  Hi {{ user.username }}!
+			{% else %}
+			  <p>You are not logged in</p>
+			  <p>Use the links above to Login or Register an account today!</p>
+			{% endif %}
+		</p>
+</div>
 
 
 {% endblock %}
