@@ -19,6 +19,8 @@ def index(request,id):
 		if form.is_valid():
 			Orders.objects.create(**form.cleaned_data)
 			return HttpResponseRedirect(reverse('thanks_page'))
+		else:
+			form = ReserveForm()
 	context = {
 		'form': form,
 		'car' : obj,
