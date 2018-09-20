@@ -1,12 +1,12 @@
-from django.shortcuts import render
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import CreateView
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 
 from .forms import *
 
 from dataimport.models import *
 from dataimport.testimport import importthedata
+from django.urls import reverse
 
 def index(request, id):
 	obj = get_object_or_404(Cars, car_id=id)
@@ -17,7 +17,7 @@ def index(request, id):
 		}
 	return render(request, 'reservation/index.html', context)
 
-
+@login_required(login_url='/account/login')
 def test(request,id):
 	form = ReserveForm()
 	obj = get_object_or_404(Cars, car_id=id)
@@ -26,6 +26,7 @@ def test(request,id):
 		form = ReserveForm(request.POST)
 		if form.is_valid():
 			Orders.objects.create(**form.cleaned_data)
+			return HttpResponseRedirect(reverse('thanks_page'))
 	context = {
 		'form': form,
 		'car' : obj,
@@ -42,5 +43,6 @@ def details(request, id):
 		}
 	return render(request, 'reservation/car_details.html', context)
 
-
+def thanks(request):
+	return render(request, 'reservation/thanks.html')
 

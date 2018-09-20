@@ -1,6 +1,8 @@
 from django import forms
 from dataimport.models import *
 from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
+
 
 class ReserveForm(forms.ModelForm):
 	class Meta:
@@ -32,4 +34,4 @@ class ReserveForm(forms.ModelForm):
 	    self.helper.form_class = 'form-horizontal'
 	    self.helper.label_class = 'col-sm-3'
 	    self.helper.field_class = 'col-sm-9'
-
+	    self.helper.add_input(Submit('submit', 'Confirm Checkout'))

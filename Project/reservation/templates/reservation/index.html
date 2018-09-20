@@ -1,99 +1,4 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-<div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="{% static 'reservation/img/bootstrap-solid.svg' %}" alt="" width="72" height="72">
-        <h2>Ready to reserve your car?</h2>
-        <p class="lead">To reserve a car please complete and submit the booking form</p>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Your Car</span>
-            <span class="badge badge-secondary badge-pill">1</span>
-          </h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Car Name</h6>
-                <small class="text-muted">{{ car.car_make }} {{ car.car_model }}</small>
-                <h6 class="my-0"></h6>
-                <small class="text-muted">{{ car.car_series }} {{ car.car_seriesyear }}</small>
-              </div>
-              <span class="text-muted">$99</span>
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (AUD)</span>
-              <strong>$99</strong>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Reservation Details</h4>
-          <form class="needs-validation" novalidate>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="Pickup">Pickup Date and Time</label>
-                    <input class="form-control" type="datetime-local" placeholder="Date" required>
-                <div class="invalid-feedback">
-                  Valid date is required.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="Pickup">Pickup Location</label>
-                    <select class="form-control" name="car_type" required>
-                      <option value="" >Select Location</option>
-                      {% for instance in store %}
-                      <option value="{{ instance.store_city }}">{{ instance.store_city }}</option>
-                      {% endfor %}
-                    </select>
-                <div class="invalid-feedback">
-                  Valid Location is required.
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="Pickup">Return Date and Time</label>
-                    <input class="form-control" type="datetime-local" placeholder="Date" required>
-                <div class="invalid-feedback">
-                  Valid date is required.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="Pickup">Return Location</label>
-                    <select class="form-control" name="car_type" required>
-                      <option value="" >Select Location</option>
-                      {% for instance in store %}
-                      <option value="{{ instance.store_city }}">{{ instance.store_city }}</option>
-                      {% endfor %}
-                    </select>
-                <div class="invalid-feedback">
-                  Valid Location is required.
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="username" >Username</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">@</span>
-                </div>
-                <input type="text" class="form-control" id="username" placeholder="Username" required>
-                <div class="invalid-feedback" style="width: 100%;">
-                  Your username is required.
-                </div>
-              </div>
-            </div>
-            <hr class="mb-4">
-
-            <h4 class="mb-3">Payment</h4> 
-
-            <!-- PAYMENT FORM -->
-
-            <!-- NAV LIST -->
-            <div class="mb-3">
+<div class="mb-3">
             <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
@@ -144,7 +49,6 @@
                       </div> 
                   </div>
                 </div>
-                <button class="subscribe btn btn-primary btn-block" type="submit"> Confirm your checkout </button>
               </div> 
 
             <!-- PAYPAL CONTENT --> 
@@ -165,10 +69,5 @@
                 </p>
                 <p><strong>Note:</strong> Your reservation will be held for 5 days before cancelling order. </p>
                 </div> 
-              </form>
               </div> 
             </div>
-
-            {% endblock %}
-
-    
