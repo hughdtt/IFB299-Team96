@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'core',
     'reservation',
+    'management.apps.ManagementConfig',
     'searchpage',
     'account',
     'templates',
