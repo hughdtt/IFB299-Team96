@@ -61,7 +61,6 @@ def create(request):
 	    form = UserCreationForm()
 
 	context = {
-	# 'user_form': user_form,
 	'form': form
 	}
 

@@ -13,14 +13,12 @@ class ProfileForm(forms.ModelForm):
 		}
 
 		labels = {
-            'order_id': "Order ID",
             'customer_name': "Your Full Name",
             'customer_phone': "Your Phone Number",
             'customer_address': "Your Address",
             'customer_birthday': "Date of Birth",
             'customer_occupation': "Your Occupation",
             'customer_gender': "Gender",
-            'order_car' : "Car Name"
         }
 
 	def __init__(self, *args, **kwargs):
