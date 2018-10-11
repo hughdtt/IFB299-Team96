@@ -3,6 +3,10 @@
                 <form method='GET' action=''>
                     <div class="pt-5 text-center rounded" id="querytext">                   
                         <input class="text-center rounded border border-dark" type='text' name='query' placeholder="Search for vehicles" value='{{ request.GET.query }}'/>
+
+                        <br>
+                        <a href="{% url 'search:recommendation' %}">Need help?</a>
+
                     </div>
                       
                     <div class="container"> 
