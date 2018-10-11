@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<script type="text/javascript" src="{% static "admin/js/fusioncharts.js" %}"></script>
+<script type="text/javascript" src="{% static "admin/js/themes/fusioncharts.theme.fusion.js" %}"></script>
+<div class="py-5 text-center">
+  <h3>Welcome to the data analytics page!</h3>
+  <div id="data-chart"></div>
+  {{ output | safe }}
+</div>
+{% endblock %}
