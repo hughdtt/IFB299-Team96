@@ -25,7 +25,13 @@
         <form action="{% url 'reservation:index' car.car_id %}", method ="POST">
         	{% csrf_token %}
         	<input type="submit" value="Reserve">
+	<hr class="mb-4">
+	<h4 class ="mb-3">Reviews</h4>
+	<form action='action' method="POST">
+		{% csrf_token %}
+		{% crispy form %}
        </div>
+
 
 
 

@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 
 from dataimport.models import *
+from .models import *
 from dataimport.testimport import importthedata
 from django.urls import reverse
 
@@ -31,9 +32,11 @@ def index(request,id):
 def details(request, id):
 	obj = get_object_or_404(Cars, car_id=id)
 	obj2 = Stores.objects.all()
+	obj3 = Reviews.object.all()
 	context = {
 		'car' : obj,
-		'store' : obj2
+		'store' : obj2,
+                'reviews' : obj3
 		}
 	return render(request, 'reservation/car_details.html', context)
 
