@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from collections import OrderedDict
-from dataimport.models import Orders
+from dataimport.models import Orders,Stores
 from django.db import models
 from datetime import date
 from .fusioncharts import FusionCharts
@@ -11,10 +11,14 @@ class ManagementPageView(TemplateView):
     template_name = 'management.html'
 
 def analytics(request):
-
+    
     # Chart data is passed to the `dataSource` parameter, as dictionary in the form of key-value pairs.
     dataSource = OrderedDict()
-
+    getData = request.GET
+    storeGet = getData.get("Store",default="DEFAULT KEY VALUE")
+    gGet = getData.get("g",default="DEFAULT KEY VALUE")
+    yearGet = getData.get("year",default="DEFAULT KEY VALUE")
+    monthGet = getData.get("month",default="DEFAULT KEY VALUE")
     # The `chartConfig` dict contains key-value pairs data for chart attribute
     chartConfig = OrderedDict()
     chartConfig["caption"] = "Customer Orders By Year"
@@ -48,5 +52,9 @@ def analytics(request):
     # Create an object for the column 2D chart using the FusionCharts class constructor
     # The chart data is passed to the `dataSource` parameter.
     column2D = FusionCharts("column2d", "ex1" , "600", "400", "data-chart", "json", dataSource)
-
-    return  render(request, 'analytics.html', {'output' : column2D.render()})
+    #years = Orders.objects.values('order_createdate').order_by('order_createdate').distinct()
+    stores = Stores.objects.values('store_name').order_by('store_name').distinct().values_list('store_name',flat=True)
+    years = Orders.objects.dates('order_createdate','year',order='DESC').distinct()
+    granularity = ["All","By Year","By Month"]
+    months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    return  render(request, 'analytics.html', {'output' : column2D.render(), 'years' : years, 'stores' : stores, 'granularity' : granularity, 'months' : months})
