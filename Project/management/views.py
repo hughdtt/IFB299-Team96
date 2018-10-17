@@ -44,18 +44,26 @@ def analytics(request):
         orderFiltered = Orders.objects.filter(order_pickupstore=storeToAnalyse)
     #TODO: FIX THIS
     years2 = years
+    monthNumber = 1
     if gGet != "All":
         years2 = years.filter(order_createdate__range=(date(int(yearGet),1,1),date(int(yearGet),12,31)))
     
+    if gGet == "By Month":
+        for i in range(1,12):
+            if(monthGet == months[i]):
+                monthNumber = i
 
     
     for x in years2:
         if gGet == "By Year":
-            for mth in range(1,12):
-                chartData[str(months[mth])] = orderFiltered.filter(order_createdate__range=(date(x.year,mth,1),date(x.year,mth,calendar.monthrange(x.year,mth)[1]))).count()
+            for mth in range(1,13):
+                chartData[str(months[mth-1])] = orderFiltered.filter(order_createdate__range=(date(x.year,mth,1),date(x.year,mth,calendar.monthrange(x.year,mth)[1]))).count()
+        elif gGet == "By Month":
+            
+            for day in range(1,calendar.monthrange(x.year,monthNumber)[1]):
+                chartData[str(day) + "-" + monthGet] = orderFiltered.filter(order_createdate=(date(x.year,monthNumber,day))).count()
         else:
             chartData[str(x.year)] = orderFiltered.filter(order_createdate__range=(date(x.year,1,1),date(x.year,12,31))).count()
-        print(x.year)
 
         
     '''
@@ -82,6 +90,45 @@ def analytics(request):
     # The chart data is passed to the `dataSource` parameter.
     column2D = FusionCharts("column2d", "ex1" , "600", "400", "data-chart", "json", dataSource)
     #years = Orders.objects.values('order_createdate').order_by('order_createdate').distinct()
-    for specificStore in stores:
-        print("DELET THIS")
+    years = list(years)
+    months = list(months)
+    stores = list(stores)
+    granularity = list(granularity)
+    #years[1] = "<delete" + str(years[1])
+    #print(years[1])
+    #error()
+    i = 0
+    for yr in years:
+        print(str(yearGet) == str(yr.year))
+        print(str(yearGet))
+        print(str(yr.year))
+        if(str(yearGet) == str(yr.year)):
+            years[i] = "selected >" + str(years[i].year)
+        else:
+            years[i] = ">" + str(years[i].year)
+        print(years[i])
+        i = i + 1
+
+    i = 0
+    for mth in months:
+        if(monthGet == str(mth)):
+            months[i] = "selected >" + str(months[i])
+        else:
+            months[i] = ">" + str(months[i])
+        i = i + 1
+    i = 0
+    for gr in granularity:
+        if(gGet == granularity[i]):
+            granularity[i] = "selected >" + granularity[i]
+        else:
+            granularity[i] = ">" + granularity[i]
+        i = i + 1
+    i = 0
+    for store in stores:
+        if(storeGet == store):
+            stores[i] = "selected >" + str(stores[i])
+        else:
+            stores[i] = ">" + str(stores[i])
+        i = i + 1
+        
     return  render(request, 'analytics.html', {'output' : column2D.render(), 'years' : years, 'stores' : stores, 'granularity' : granularity, 'months' : months})

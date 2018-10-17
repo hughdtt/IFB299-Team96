@@ -2,43 +2,48 @@
 {% load static %}
 
 {% block content %}
+<br/>
 <script type="text/javascript" src="{% static "admin/js/fusioncharts.js" %}"></script>
 <script type="text/javascript" src="{% static "admin/js/themes/fusioncharts.theme.fusion.js" %}"></script>
-<div id="dropdowns">
-  <form action="" method="GET">
-  <select id="drop-store" class="form-control col-lg-3 col-md-4" name="Store">                              
-    <option value="" disabled>Store</option>
-    <option selected>All Stores</option>
-    {% for store in stores %}
-    <option>{{ store }}</option>
-    {% endfor %}
-</select>
-<select id="drop-selection" class="form-control col-lg-3 col-md-4" name="g">                              
-  <option value="" disabled>Granularity</option>
-    {% for g in granularity %}
-      <option>{{ g }}</option>
-    {% endfor %}
-</select>
-<select id="drop-granularity" class="form-control col-lg-3 col-md-4" name="year">                              
-  <option value="" disabled selected>Specific Year</option>
-    {% for year in years %}
-      <option>{{ year|date:"Y"  }}</option>
-    {% endfor %}
-</select>
-
-<select id="drop-granularity" class="form-control col-lg-3 col-md-4" name="month">                              
-  <option value="" disabled selected>Specific Month</option>
-    {% for month in months %}
-      <option>{{ month  }}</option>
-    {% endfor %}
-</select>
-  <input type="submit" value="Submit">
-</form>
-
-</div>
-<div class="py-5 text-center">
-  <h3>Welcome to the data analytics page!</h3>
-  <div id="data-chart"></div>
-  {{ output | safe }}
-</div>
+  <div class="py-5 text-center">
+    <h3>Welcome to the data analytics page!</h3>
+    <div style="">
+      <div style="float:left;width:40%;" id="dropdowns">
+        <form action="" method="GET">
+        <select id="drop-store" class="form-control" name="Store">                              
+          <option value="" disabled>Store</option>
+          <option selected>All Stores</option>
+          {% for store in stores %}
+          <option {{ store|safe }}</option>
+          {% endfor %}
+      </select>
+      <br/>
+      <select id="drop-selection" class="form-control" name="g">                              
+        <option value="" disabled>Granularity</option>
+          {% for g in granularity %}
+            <option {{ g|safe }}</option>
+          {% endfor %}
+      </select>
+      <br/>
+      <select id="drop-granularity" class="form-control" name="year">                              
+        <option value="" disabled>Specific Year</option>
+          {% for year in years %}
+            <option {{ year|safe }}</option>
+          {% endfor %}
+      </select>
+      <br/>
+      <select id="drop-granularity" class="form-control" name="month">                              
+        <option value="" disabled selected>Specific Month</option>
+          {% for month in months %}
+            <option {{ month|safe  }}</option>
+          {% endfor %}
+      </select>
+        <input type="submit" value="Submit">
+        <br/>
+      </form>
+      </div>
+    </div>
+      <div style="float:right;width:60%;" id="data-chart"></div>
+      {{ output | safe }}
+  </div>
 {% endblock %}
