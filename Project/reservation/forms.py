@@ -1,5 +1,6 @@
 from django import forms
 from dataimport.models import *
+from .models import *
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
@@ -34,3 +35,12 @@ class ReserveForm(forms.ModelForm):
 	    self.helper.label_class = 'col-sm-3'
 	    self.helper.field_class = 'col-sm-9'
 	    self.helper.add_input(Submit('submit', 'Confirm Checkout'))
+
+class ReviewForm(forms.Form):
+	content_type = forms.CharField(widget=forms.HiddenInput)
+	object_id = forms.IntegerField(widget=forms.HiddenInput)
+	content = forms.CharField(widget=forms.Textarea)
+
+
+
+

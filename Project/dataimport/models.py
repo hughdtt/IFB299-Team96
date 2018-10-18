@@ -1,9 +1,30 @@
 from django.db import models
+from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType 
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 # Create your models here.
+#Model for Reviews
+class Reviews(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="comment_author", on_delete=models.CASCADE)
+
+    #Generic Foreign Key
+    content_type = models.ForeignKey(ContentType, related_name="comment_contenttype",  on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    #Content and DateTime
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.author.username) + ":" + str(self.object_id)
+
 
 #Model for customer
 #Has fields for name, phone, address, birthday, occupation, and gender
@@ -60,8 +81,13 @@ class Cars(models.Model):
     car_bodytype = models.CharField(max_length = 20)
     car_drive = models.CharField(max_length = 5)
     car_wheelbase = models.CharField(max_length=10)
+    comment_body = models.TextField(blank=True)
+    comments = GenericRelation(Reviews)
     def __str__(self):  #Returns the car's make
         return str(self.car_id) + ":" + self.car_make
+
+    
+
 
 #Model for orders
 #Has fields linking it to the pickup store, return store, customer, and car, as well as the dates for creation, pickup, and return.
@@ -76,3 +102,5 @@ class Orders(models.Model):
     order_car = models.ForeignKey(Cars, on_delete=models.CASCADE)
     def __str__(self):  #Returns the order's id
         return str(self.order_id) + ":" + str(self.order_createdate) + ":" + str(self.order_customer)
+
+
