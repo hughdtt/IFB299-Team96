@@ -66,22 +66,22 @@ class Stores(models.Model):
 #Model for cars
 #Has fields for ID,make,model, series, and more info about the car.
 class Cars(models.Model):
-    car_id = models.IntegerField(primary_key=True)
-    car_make = models.CharField(max_length = 200)
-    car_model = models.CharField(max_length = 200)
-    car_series = models.CharField(max_length = 200)
-    car_seriesyear = models.IntegerField()
-    car_pricenew = models.IntegerField()
-    car_enginesize = models.CharField(max_length = 5)
-    car_fuelsystem = models.CharField(max_length = 100)
-    car_tankcapacity = models.CharField(max_length = 5)
-    car_power = models.CharField(max_length = 5)
-    car_seatingcapacity = models.IntegerField()
-    car_standardtransmission = models.CharField(max_length = 10)
-    car_bodytype = models.CharField(max_length = 20)
-    car_drive = models.CharField(max_length = 5)
-    car_wheelbase = models.CharField(max_length=10)
-    comment_body = models.TextField(blank=True)
+    car_id = models.IntegerField(primary_key=True,blank=True)
+    car_make = models.CharField(max_length = 200,blank=True)
+    car_model = models.CharField(max_length = 200,blank=True)
+    car_series = models.CharField(max_length = 200,blank=True)
+    car_seriesyear = models.IntegerField(blank=True)
+    car_pricenew = models.IntegerField(blank=True)
+    car_enginesize = models.CharField(max_length = 5,blank=True)
+    car_fuelsystem = models.CharField(max_length = 100,blank=True)
+    car_tankcapacity = models.CharField(max_length = 5,blank=True)
+    car_power = models.CharField(max_length = 5,blank=True)
+    car_seatingcapacity = models.IntegerField(blank=True)
+    car_standardtransmission = models.CharField(max_length = 10,blank=True)
+    car_bodytype = models.CharField(max_length = 20,blank=True)
+    car_drive = models.CharField(max_length = 5,blank=True)
+    car_wheelbase = models.CharField(max_length=10,blank=True)
+    comment_body = models.TextField(blank=True,blank=True)
     comments = GenericRelation(Reviews)
     def __str__(self):  #Returns the car's make
         return str(self.car_id) + ":" + self.car_make
@@ -93,11 +93,15 @@ class Cars(models.Model):
 #Has fields linking it to the pickup store, return store, customer, and car, as well as the dates for creation, pickup, and return.
 class Orders(models.Model):
     order_id = models.IntegerField(primary_key=True)
+    #1 = yet to be picked up
+    #2 = yet to be returned
+    #3 = picked up and returned
+    order_status = models.IntegerField(default=3)
     order_createdate = models.DateField(auto_now_add=True)
     order_pickupdate = models.DateField()
-    order_returndate = models.DateField()
+    order_returndate = models.DateField(blank=True)
     order_pickupstore = models.ForeignKey(Stores, related_name='PickUpStore', on_delete=models.CASCADE)
-    order_returnstore = models.ForeignKey(Stores, related_name='ReturnStore', on_delete=models.CASCADE)
+    order_returnstore = models.ForeignKey(Stores, related_name='ReturnStore', on_delete=models.CASCADE,blank=True)
     order_customer = models.ForeignKey(Customers, on_delete=models.CASCADE)
     order_car = models.ForeignKey(Cars, on_delete=models.CASCADE)
     def __str__(self):  #Returns the order's id

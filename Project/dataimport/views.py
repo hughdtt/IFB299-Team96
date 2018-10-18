@@ -9,5 +9,8 @@ from dataimport.models import Customers
 def index(request):
     if(request.GET.get('print_btn')):
         print('Button clicked')
-        importthedata()
+        importthedata(1)
+        if(request.GET.get('store_btn')):
+        print('Button clicked')
+        importthedata(2)
     return HttpResponse(render(request, 'dataimport.html'))
