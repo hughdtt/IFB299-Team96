@@ -14,13 +14,39 @@ def index(request,id):
 	form = ReserveForm()
 	obj = get_object_or_404(Cars, car_id=id)
 	obj2 = Stores.objects.all()
+
+	order_id = 602
+	car_name = id
+	account_name = request.user
+
+	initial_data = {
+		"order_id" : order_id,
+		"order_car" : car_name,
+		"order_customer" : account_name,
+	}
+
 	if request.method == "POST":
-		form = ReserveForm(request.POST)
+		form = ReserveForm(request.POST or None, initial=initial_data)
 		if form.is_valid():
-			Orders.objects.create(**form.cleaned_data)
+			order_id = form.cleaned_data.get("order_id")
+			pickup_data = form.cleaned_data.get("order_pickupdate")
+			return_data = form.cleaned_data.get("order_returndate")
+			pickupstore_data = form.cleaned_data.get("order_pickupstore")
+			returnstore_data = form.cleaned_data.get("order_returnstore")
+			account_name = form.cleaned_data.get("order_customer")
+			car_data = form.cleaned_data.get("order_car")
+			new_order = Orders.objects.get_or_create(
+									order_id = order_id,
+									order_pickupdate = pickup_data,
+									order_returndate = return_data,
+									order_pickupstore = pickupstore_data,
+									order_returnstore = returnstore_data,
+									order_customer = account_name,
+									order_car = car_data,
+								)
 			return HttpResponseRedirect(reverse('thanks_page'))
 		else:
-			form = ReserveForm()
+			form = ReserveForm(initial=initial_data)
 	context = {
 		'form': form,
 		'car' : obj,
@@ -57,6 +83,8 @@ def details(request, id):
 									content = content_data
 								)
 
+	else:
+		form = ReviewForm()
 	context = {
 		'car' : instance,
 		'review' : review,

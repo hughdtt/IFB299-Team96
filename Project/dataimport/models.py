@@ -93,7 +93,7 @@ class Cars(models.Model):
 #Has fields linking it to the pickup store, return store, customer, and car, as well as the dates for creation, pickup, and return.
 class Orders(models.Model):
     order_id = models.IntegerField(primary_key=True)
-    order_createdate = models.DateField()
+    order_createdate = models.DateField(auto_now_add=True)
     order_pickupdate = models.DateField()
     order_returndate = models.DateField()
     order_pickupstore = models.ForeignKey(Stores, related_name='PickUpStore', on_delete=models.CASCADE)

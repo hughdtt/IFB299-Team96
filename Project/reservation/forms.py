@@ -13,6 +13,9 @@ class ReserveForm(forms.ModelForm):
 			'order_createdate' : forms.DateInput(attrs={'type': 'date'}),
 			'order_pickupdate' : forms.DateInput(attrs={'type': 'date'}),
 			'order_returndate' : forms.DateInput(attrs={'type': 'date'}),
+			'order_car' : forms.HiddenInput(),
+			'order_customer' : forms.HiddenInput()
+
 
 		}
 

@@ -29,8 +29,8 @@
           <br/>
 	<p class="lead">Leave a Review Below</p>
     <div>
-        <form method='POST' action='.'> {% csrf_token %}
-            {{review_form |crispy}}
+        <form method='POST' action='{% url 'reservation:details' car.car_id %}'> {% csrf_token %}
+            {{review_form |crispy }}
             <input type='submit' value="Post Review" class='btn btn-default'>
         <br/>
         <br/>
