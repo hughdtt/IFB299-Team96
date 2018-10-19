@@ -7,9 +7,14 @@ from django.db import models
 from datetime import date
 from .fusioncharts import FusionCharts
 import calendar
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class ManagementPageView(TemplateView):
+
+
+class ManagementPageView(LoginRequiredMixin, TemplateView):
+    login_url = '/account/login'
     template_name = 'management.html'
+    
 
 def analytics(request):
     
