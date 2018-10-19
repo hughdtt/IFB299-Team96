@@ -92,7 +92,7 @@ class Cars(models.Model):
 #Model for orders
 #Has fields linking it to the pickup store, return store, customer, and car, as well as the dates for creation, pickup, and return.
 class Orders(models.Model):
-    order_id = models.IntegerField(primary_key=True)
+    order_id = models.AutoField(primary_key=True)
     order_createdate = models.DateField(auto_now_add=True)
     order_pickupdate = models.DateField()
     order_returndate = models.DateField()
