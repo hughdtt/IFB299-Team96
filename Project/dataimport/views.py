@@ -11,6 +11,6 @@ def index(request):
         print('Button clicked')
         importthedata(1)
         if(request.GET.get('store_btn')):
-        print('Button clicked')
-        importthedata(2)
+            print('Button clicked')
+            importthedata(2)
     return HttpResponse(render(request, 'dataimport.html'))

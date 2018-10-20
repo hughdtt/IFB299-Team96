@@ -7,8 +7,8 @@
 <script type="text/javascript" src="{% static "admin/js/themes/fusioncharts.theme.fusion.js" %}"></script>
   <div class="py-5 text-center">
     <h3>Welcome to the data analytics page!</h3>
-    <div style="">
-      <div style="float:left;width:40%;" id="dropdowns">
+    <div class="row">
+      <div class="col-md" id="dropdowns">
         <form action="" method="GET">
         <select id="drop-store" class="form-control" name="Store">                              
           <option value="" disabled>Store</option>
@@ -42,8 +42,9 @@
         <br/>
       </form>
       </div>
-    </div>
-      <div style="float:right;width:60%;" id="data-chart"></div>
+      <div class="col-lg" id="data-chart">
+      </div>
       {{ output | safe }}
+    </div>
   </div>
 {% endblock %}
