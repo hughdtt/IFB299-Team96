@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="py-5 text-center">
+    <h3> this is the store interface page</h3>
+    <div class="row">
+      <div class="md">
+        <h4>Placed orders</h4>
+        {% for car in topickup %}
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
