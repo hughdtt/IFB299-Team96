@@ -132,3 +132,7 @@ def analytics(request):
         i = i + 1
         
     return  render(request, 'analytics.html', {'output' : column2D.render(), 'years' : years, 'stores' : stores, 'granularity' : granularity, 'months' : months})
+def store(request):
+
+
+    return HttpResponse(render(request, 'store.html'))
