@@ -51,19 +51,17 @@ def results(request):
     }
     return render(request, 'search/results.html', context)
 
-def search(request):
-
+def search(request):  
     query = request.GET.get("query")
-    querylist = Cars.objects.all()
+    querylist = Cars.objects.all().exclude(car_drive="NULL")
 
-    store = Stores.objects.values('store_name').order_by('store_name').distinct()
-    make = Cars.objects.values('car_make').order_by('car_make').distinct()
-    model = Cars.objects.values('car_model').order_by('car_model').distinct()
-    series = Cars.objects.values('car_series').order_by('car_series').distinct()
+    make = Cars.objects.values('car_make').exclude(car_make="NULL").order_by('car_make').distinct()
+    model = Cars.objects.values('car_model').exclude(car_model="NULL").order_by('car_model').distinct()
+    series = Cars.objects.values('car_series').exclude(car_series="NULL").order_by('car_series').distinct()
     year = Cars.objects.values('car_seriesyear').order_by('car_seriesyear').distinct()
     seats = Cars.objects.values('car_seatingcapacity').order_by('car_seatingcapacity').distinct()
-    transmission = Cars.objects.values('car_standardtransmission').order_by('car_standardtransmission').distinct()
-    drive = Cars.objects.values('car_drive').order_by('car_drive').distinct()
+    transmission = Cars.objects.values('car_standardtransmission').exclude(car_standardtransmission="NULL").order_by('car_standardtransmission').distinct()
+    drive = Cars.objects.values('car_drive').exclude(car_drive="NULL").order_by('car_drive').distinct()
     
     dropdownMake = request.GET.get("dropdownMake")
     dropdownModel = request.GET.get("dropdownModel")
@@ -103,7 +101,6 @@ def search(request):
 
     if query:
         querylist = querylist.filter(
-            Q(car_id__icontains=query) |
             Q(car_make__icontains=query) |
             Q(car_model__icontains=query) |
             Q(car_series__icontains=query) |
@@ -119,7 +116,8 @@ def search(request):
             Q(car_drive__icontains=query) |
             Q(car_wheelbase__icontains=query)     
         ).distinct()
-    return render(request, 'search/searchpage.html', {'searchedcars': querylist, 'carstore': store, 'carmake': make, 'carmodel': model, 'carseries': series, 'caryear': year, 'carseats': seats,
-    'cartransmission': transmission, 'cardrive': drive})
+
+    return render(request, 'search/searchpage.html', {'searchedcars': querylist, 'carmake': make, 'carmodel': model, 'carseries': series, 'caryear': year, 'carseats': seats,
+    'cartransmission': transmission, 'cardrive': drive, 'query': query})
 
 

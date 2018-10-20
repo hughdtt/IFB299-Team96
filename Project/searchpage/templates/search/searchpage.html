@@ -1,24 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
                 <form method='GET' action=''>
-                    <div class="pt-5 text-center rounded" id="querytext">                   
-                        <input class="text-center rounded border border-dark" type='text' name='query' placeholder="Search for vehicles" value='{{ request.GET.query }}'/>
+                    <div class="pt-5 text-center rounded " id="querytext">                   
+                        <input class=" col-lg-6 offset-lg-3 col-md-6 offset-md-3 form-control input-lg" type='text' name='query' placeholder="Search for vehicles" value='{{ request.GET.query }}'/>
 
                         <br>
                         <a href="{% url 'search:recommendation' %}">Need help?</a>
 
                     </div>
                       
-                    <div class="container"> 
-                                                      
-                    <div class="form-inline py-3 b border-bottom border-white ">                       
-                            <select id="pickupStoreName" class="form-control col-lg-3 col-md-4">                              
-                                <option value="" disabled selected>Store Name...</option>
-                                {% for car in carstore %}
-                                <option>{{ car.store_name }}</option>
-                                {% endfor %}
-                            </select>
-
+                    <div class="container">                                                      
+                    <div class="form-inline py-3 b border-bottom border-white justify-content-md-center">                       
                             <select id="carMake" name='dropdownMake' class="form-control col-lg-3 col-md-4">
                                 <option value="" disabled selected>Make...</option>
                                 {% for car in carmake %}
@@ -68,10 +60,12 @@
                                 {% endfor %}
                             </select>
 
-                            <input class="my-4 py-3 px-5 rounded text-center col-lg-4 col-md-6 offset-lg-4 offset-md-3" type="submit" value="Submit">
+                            <input class="my-4 py-3 px-5 rounded text-center col-lg-4 col-md-6 offset-lg-4 offset-md-3" type="submit" value="Refresh">
             </form>
             <hr>
             </div>
+
+            <div class="text-center"><h3>{{searchedcars.count}} RESULTS</h3></div>
 
             <div class="row">
                 {% for car in searchedcars %}
@@ -91,6 +85,5 @@
                     </div>
                 {% endfor %}   
           </div>
-
 {% endblock %}
 
