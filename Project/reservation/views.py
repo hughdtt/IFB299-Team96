@@ -15,12 +15,12 @@ def index(request,id):
 	obj = get_object_or_404(Cars, car_id=id)
 	obj2 = Stores.objects.all()
 
-	order_id = 602
+	#order_id = request.Orders.order_id
 	car_name = id
 	account_name = request.user
 
 	initial_data = {
-		"order_id" : order_id,
+		#"order_id" : order_id,
 		"order_car" : car_name,
 		"order_customer" : account_name,
 	}
