@@ -9,9 +9,8 @@ from django.shortcuts import get_object_or_404
 # Create your views here.
 
 def profile(request):
-    obj = get_object_or_404(Customers, id=8)
+    user = request.user
+    obj = get_object_or_404(Customers, user=user)
     
-    
-
     return render(request, 'accounts/layout.html', {'custdata': obj})
 
