@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+    
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>YOUR PROFILE</h1>
+    </div>
+        <div class="my-4 row 1 text-center">
+            <div class="col-md-4">
+                <h2><u>User ID</u></h2>
+                <h3>{{ custdata.user }}</h3>
+            </div>
+            <div class="col-md-4">
+                <h2><u>Name</u></h2>
+                <h3>{{ custdata.customer_name }}</h3>
+            </div>
+            <div class="col-md-4">
+                <h2><u>Phone Number</u></h2>
+                <h3>{{ custdata.customer_phone }}</h3>
+            </div>
+        </div>
+
+        <div class=" my-4 row 2  text-center">
+
+          <div class="col-md-4">
+                <h2><u>Address</u></h2>
+                <h3>{{ custdata.customer_address }}</h3>
+              </div>
+              <div class="col-md-4">
+                <h2><u>Birthday</u></h2>
+                <h3>{{ custdata.customer_birthday }}</h3>
+              </div>
+              <div class="col-md-4">
+                <h2><u>Occupation</u></h2>
+                <h3>{{ custdata.customer_occupation }}</h3>
+              </div>
+        </div>
+        
+
+        <hr>
+
+      </div> <!-- /container -->
+    
+
+{{ custdata.gender }}
+
+{% endblock %}

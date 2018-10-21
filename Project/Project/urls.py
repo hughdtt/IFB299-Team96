@@ -26,7 +26,10 @@ urlpatterns = [
     path('account/', include(('account.urls', 'account'), namespace='account')),
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
-    path('dataimport/' , include('dataimport.urls'), name='dataimport')
+    path('dataimport/' , include('dataimport.urls'), name='dataimport'),
+    path('userprofile/', include('userprofile.urls'))
+    
+
 
 ]
     

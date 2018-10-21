@@ -52,8 +52,12 @@
                <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
+                  <a class="nav-link" href="/userprofile/">Profile</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="/account/logout">Logout</a>
                 </li>
+                
                   {% else %}
                 <li class="nav-item">
                   <a class="nav-link" href="/account/register" method='POST'>Register</a>
@@ -66,6 +70,7 @@
                   {% endif %}
                   {% if user.is_authenticated %}
                       <span class="navbar-text"> Signed in as: {{user.username}} </span>
+                      
                   {% else %}
                       <span class="navbar-text"> You are not signed in</span>
                   {% endif %}
