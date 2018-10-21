@@ -6,7 +6,8 @@ from crispy_forms.layout import Submit
 class ProfileForm(forms.ModelForm):
 	class Meta:
 		model = Customers 
-		fields = '__all__'
+		fields= '__all__'
+		exclude=('user',)
 		widgets = {
 			'customer_birthday' : forms.DateInput(attrs={'type': 'date'}),
 
@@ -21,12 +22,4 @@ class ProfileForm(forms.ModelForm):
             'customer_gender': "Gender",
         }
 
-	def __init__(self, *args, **kwargs):
-	    super(ProfileForm, self).__init__(*args, **kwargs)
-	    self.helper = FormHelper()
-	    self.helper.form_tag = True
-	    self.helper.form_class = 'form-horizontal'
-	    self.helper.label_class = 'col-sm-3'
-	    self.helper.field_class = 'col-sm-9'
-	    self.helper.add_input(Submit('submit', 'Submit'))
 		

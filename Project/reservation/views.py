@@ -18,7 +18,7 @@ def index(request,id):
 	#order_id = request.Orders.order_id
 	car_name = id
 	account_name = request.user
-
+	print(account_name)
 	initial_data = {
 		#"order_id" : order_id,
 		"order_car" : car_name,

@@ -23,7 +23,7 @@ urlpatterns = [
     path('reservation/<int:id>/', include(('reservation.urls', 'reservation'), namespace='reservation')),
     path('', include('management.urls')),
     path('searchpage/', include(('searchpage.urls', 'search'), namespace ='search')),
-    path('account/', include('account.urls')),
+    path('account/', include(('account.urls', 'account'), namespace='account')),
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
     path('dataimport/' , include('dataimport.urls'), name='dataimport')
