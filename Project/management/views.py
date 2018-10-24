@@ -137,7 +137,13 @@ def analytics(request):
         i = i + 1
         
     return  render(request, 'analytics.html', {'output' : column2D.render(), 'years' : years, 'stores' : stores, 'granularity' : granularity, 'months' : months})
+
 def store(request):
-
-
-    return HttpResponse(render(request, 'store.html'))
+    getData = request.GET
+    storeGet = int(getData.get("Store",default="1"))
+    stores = Stores.objects.values('store_id','store_name').order_by('store_name').distinct()
+    topickup = Orders.objects.filter(order_pickupstore=storeGet).filter(order_status=1)
+    todropoff = Orders.objects.filter(order_returnstore=storeGet).filter(order_status=2)
+    print(topickup)
+    print(todropoff)
+    return HttpResponse(render(request, 'store.html',{'stores' : stores, 'selectedStore' : storeGet, 'topickup' : topickup, 'todropoff' : todropoff}))

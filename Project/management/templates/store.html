@@ -1,16 +1,76 @@
+<style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+  }
+</style>
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
   <div class="py-5 text-center">
     <h3> this is the store interface page</h3>
+    <form action="" method="GET">
+        <select id="drop-store" class="form-control" name="Store">
+            {% for s in stores %}
+            <option value="{{s.store_id}}" {% if selectedStore == s.store_id %} selected {% endif %}> {{ s.store_name }} </option>
+            {% endfor %}
+          </select>
+          <input type="submit" class="btn btn-primary" value="Submit">
+    <p>
+    </p>
     <div class="row">
-      <div class="md">
+      <div class="col-md">
         <h4>Placed orders</h4>
-        {% for car in topickup %}
-
-        {% endfor %}
+        <table>
+          <th>Pick up date</th>
+          <th>Order ID</th>
+          <th>Customer Name</th>
+          <th>Car ID</th>
+          <th>Car Model</th>
+          <th>Click to pick up</th>
+          <tr>
+            <td>None</td><td></td><td></td><td></td>
+            <td>
+                <td><input name='id' type="radio" class="btn btn-primary" value="0"></button></td>  
+            </td>
+          </tr>
+          {% for order in topickup %}
+          <tr>
+            <td>{{order.order_pickupdate}}</td>
+            <td>{{order.order_id}}</td>
+            <td>{{order.order_customer.customer_name}}</td>
+            <td>{{order.order_car}}</td>
+            <td>{{order.order_car.car_model}}</td>
+            <form action="" method="GET">
+            <td><input name='id' type="radio" class="btn btn-primary" value="{{order.order_id}}"></button></td>
+          </tr>
+          {% endfor %}
+        </table>
+        
       </div>
+      <div class="col-md">
+          <h4>Active orders</h4>
+          <table>
+              <th>Return date</th>
+              <th>Order ID</th>
+              <th>Customer Name</th>
+              <th>Car ID</th>
+              <th>Car Model</th>
+              <th>Click to return</th>
+              {% for order in todropoff %}
+              <tr>
+                <td>{{order.order_returndate}}</td>
+                <td>{{order.order_id}}</td>
+                <td>{{order.order_customer.customer_name}}</td>
+                <td>{{order.order_car}}</td>
+                <td>{{order.order_car.car_model}}</td>
+                <td><input name='id' type="radio" class="btn btn-primary" value="{{order.order_id}}"></button></td>
+              </tr>
+              {% endfor %}
+            </table>
+        </div>
+      </form>
     </div>
   </div>
 {% endblock %}
