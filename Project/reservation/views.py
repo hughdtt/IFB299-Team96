@@ -23,6 +23,7 @@ def index(request,id):
 		#"order_id" : order_id,
 		"order_car" : car_name,
 		"order_customer" : account_name,
+		"order_status" : 1,
 	}
 
 	if request.method == "POST":
@@ -37,6 +38,7 @@ def index(request,id):
 			car_data = form.cleaned_data.get("order_car")
 			new_order = Orders.objects.get_or_create(
 									order_id = order_id,
+									order_status = 1,
 									order_pickupdate = pickup_data,
 									order_returndate = return_data,
 									order_pickupstore = pickupstore_data,
@@ -69,22 +71,24 @@ def details(request, id):
 		"object_id": object_id,
 
 	}
+	if request.method == "POST":
+		review_form = ReviewForm(request.POST, initial=initial_data)
+		if review_form.is_valid():
+			c_type = review_form.cleaned_data.get("content_type")
+			content_type = ContentType.objects.get(model=c_type)
+			obj_id = review_form.cleaned_data.get("object_id")
+			content_data = review_form.cleaned_data.get("content")
+			new_review, created = Reviews.objects.get_or_create(
+										author = request.user,
+										content_type = content_type,
+										object_id = obj_id,
+										content = content_data
+									)
+			print('success')
+		else:
+			review_form = ReviewForm(initial=initial_data)
+			print('no')
 
-	review_form = ReviewForm(request.POST or None, initial=initial_data)
-	if review_form.is_valid():
-		c_type = review_form.cleaned_data.get("content_type")
-		content_type = ContentType.objects.get(model=c_type)
-		obj_id = review_form.cleaned_data.get("object_id")
-		content_data = review_form.cleaned_data.get("content")
-		new_review, created = Reviews.objects.get_or_create(
-									author = request.user,
-									content_type = content_type,
-									object_id = obj_id,
-									content = content_data
-								)
-
-	else:
-		form = ReviewForm()
 	context = {
 		'car' : instance,
 		'review' : review,

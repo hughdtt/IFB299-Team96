@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.urls import reverse
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 # Returns the loggedin.html view when the user is logged in. Replaced with going straight to the index currently.
@@ -47,19 +48,25 @@ def create(request):
 
 	return render(request, 'accountcreation.html', context)
 
-# mb for profile page?
-def create_customer(request):
-	if request.method == 'POST':
-
-		username = request.user
-		print(username)
-
-		initial_data = {
-		'user' : username
+#Edit for profile page?
+def edit_customer(request):
+	profile_form = ProfileForm()
+	user = request.user
+	customers = get_object_or_404(Customers, user=user)
+	test = 'Test'
+	print(user)
+	initial_data = {
+			'user' : user,
+			'customer_name' : test,
+			'customer_phone' : customers.customer_phone,
+			'customer_address' : customers.customer_address,
+			'customer_birthday' : customers.customer_birthday,
+			'customer_occupation' : customers.customer_occupation,
+			'customer_gender' : customers.customer_gender,
 		}
-
-		profile_form = ProfileForm(request.POST or None, initial = initial_data)
-
+	if request.method == 'POST':
+		profile_form = ProfileForm(request.POST or None, initial=initial_data)
+		print(initial_data)
 		if profile_form.is_valid():  # Reload the profile form with the profile instance
 			profile_form.full_clean()  # Manually clean the form this time. It is implicitly called by "is_valid()" method
 			profile_form.save()  # Gracefully save the form
@@ -72,4 +79,4 @@ def create_customer(request):
 	'profile_form' : profile_form
 	}
 
-	return render(request, 'accountcreationstep2.html', context)
+	return render(request, 'edit_account.html', context)

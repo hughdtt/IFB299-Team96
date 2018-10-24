@@ -5,6 +5,12 @@
     <div class="jumbotron text-center">
         <h1>YOUR PROFILE</h1>
     </div>
+    <br/>
+        <form action="{% url 'account:edit_customer' %}", method ="POST">
+          {% csrf_token %}
+          <input type="submit" class='col-md-4 btn btn-primary' value="Edit Profile?">
+        </form>
+          <br/>
         <div class="my-4 row 1 text-center">
             <div class="col-md-4">
                 <h2><u>User ID</u></h2>

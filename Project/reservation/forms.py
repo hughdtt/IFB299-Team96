@@ -15,6 +15,7 @@ class ReserveForm(forms.ModelForm):
 			'order_returndate' : forms.DateInput(attrs={'type': 'date'}),
 			'order_car' : forms.HiddenInput(),
 			'order_customer' : forms.HiddenInput(),
+			'order_status' : forms.HiddenInput(),
 
 
 		}
@@ -37,6 +38,7 @@ class ReserveForm(forms.ModelForm):
 	    self.helper.form_class = 'form-horizontal'
 	    self.helper.label_class = 'col-sm-3'
 	    self.helper.field_class = 'col-sm-9'
+	    self.helper.add_input(Submit('submit', 'Confirm Checkout'))
 
 class ReviewForm(forms.Form):
 	content_type = forms.CharField(widget=forms.HiddenInput)

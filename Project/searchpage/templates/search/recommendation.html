@@ -1,6 +1,7 @@
-<<<<<<< HEAD
+
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="py-5 text-center">
@@ -10,147 +11,15 @@
 
         	<hr class="mb-4">
 
-            <h4 class="mb-3">What best describes your lifestyle?</h4>
+            <h4 class="mb-3">What type of car are you looking for?</h4>
 
-            <div class="d-block my-3">
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Family Car</label>
-              </div>
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Adventure</label>
-              </div>
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Trade and Commercial</label>
-              </div>
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Prestige</label>
-              </div>
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Eco</label>
-              </div>
-            </div>
-
-            <hr class="mb-4">
-
-            <h4 class="mb-3">What is most important to you?</h4>
-
-            <div class="d-block my-3">
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Value</label>
-              </div>
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Performance</label>
-              </div>
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Safety</label>
-              </div>
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Economy</label>
-              </div>
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Comfort</label>
-              </div>>
-              <div class="">
-                <input type="radio" class="custom-control-input" checked required>
-                <label >Space</label>
-              </div>
-            </div>
-		<div class="py-5 text-center">
-			<form action="{% url 'search:results'  %}", method ="POST">
+		<div class="py-5 text-left">
+			<form action="", method ="GET">
 				{% csrf_token %}
-				<input type="submit" value="Submit">
+        		{{ form | crispy }}
+        		<br/>
+				<input type="submit" class="col col-md-7 btn btn-primary" value="Submit">
 			</form>
 	    </div>
-=======
-{% extends 'base.html' %}
-{% load static %}
 
-{% block content %}
-<div class="py-5 text-center">
-	<h2>What Car should you rent?</h2>
-        <p class="lead">Guide to renting a car</p>
-    </div>
-
-        	<hr class="mb-4">
-
-            <h4 class="mb-3">What best describes your lifestyle?</h4>
-
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Family Car</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Adventure</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Trade and Commericial</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Prestige</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Eco</label>
-              </div>
-            </div>
-
-            <hr class="mb-4">
-
-            <h4 class="mb-3">What is most important to you?</h4>
-
-            <div class="d-block my-3">
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Value</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Performance</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Safety</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Handling</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="debit">Economy</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Comfort</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                <label class="custom-control-label" for="paypal">Connectivity</label>
-              </div>
-              <div class="custom-control custom-radio">
-                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                <label class="custom-control-label" for="credit">Space</label>
-              </div>
-            </div>
-		<div class="py-5 text-center">
-			<form action="{% url 'search:results'  %}", method ="POST">
-				{% csrf_token %}
-				<input type="submit" value="Submit">
-			</form>
-	    </div>
->>>>>>> a1f2bf4f1b6b59a6e592057d9c6ea813f2e8ae50
 {% endblock %}

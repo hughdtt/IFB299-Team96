@@ -1,12 +1,13 @@
 
-
 #from searchpage.models import Table1
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.db.models import Q
 from django.db import connection
 from dataimport.models import Cars, Stores
 from django.template.response import TemplateResponse
-from .forms import *
+from .forms import RecommendForm
 
 
 
@@ -18,34 +19,29 @@ def index(request):
     return render(request, 'search/searchpage.html', {'Cars': carData})
 
 def recommendation(request):
-    query = request.GET.get("query")
-    querylist = Cars.objects.all()
-
-    make = Cars.objects.values('car_make').order_by('car_make').distinct()
-    model = Cars.objects.values('car_model').order_by('car_model').distinct()
-    series = Cars.objects.values('car_series').order_by('car_series').distinct()
-    year = Cars.objects.values('car_seriesyear').order_by('car_seriesyear').distinct()
-    seats = Cars.objects.values('car_seatingcapacity').order_by('car_seatingcapacity').distinct()
-    transmission = Cars.objects.values('car_standardtransmission').order_by('car_standardtransmission').distinct()
-    drive = Cars.objects.values('car_drive').order_by('car_drive').distinct()
-    priceMin = request.GET.get("priceMin")
-    priceMax = request.GET.get("priceMax")
+    form = RecommendForm()
+    array = ['family', 'adventure', 'trade', 
+            'prestige', 'eco', 'value', 
+            'performance', 'safety', 'comfort' ,
+            'space' ,  
+            ]
+    array_length = len(array)
+    for i in range(array_length):
+        if str(array[i]) in request.GET:
+            print(array[i])
+            return HttpResponseRedirect(reverse('search:results'))
 
     context = {
-        'searchedcars': querylist, 
-        'carmake': make, 
-        'carmodel': model, 
-        'carseries': series, 
-        'caryear': year, 
-        'carseats': seats,
-        'cartransmission': transmission, 
-        'cardrive': drive
+    'form': form,
     }
 
     return render(request, 'search/recommendation.html', context)
 
 def results(request):
-    querylist = Cars.objects.all()
+    querylist = Cars.objects.all().exclude(car_drive="NULL")
+    querylist = querylist.filter(
+            Q(car_make__icontains='Honda') |
+            Q(car_make__icontains='Toyota')).distinct()
     context = {
         'searchedcars': querylist, 
     }

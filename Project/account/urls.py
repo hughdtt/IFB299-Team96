@@ -8,7 +8,7 @@ from django.conf.urls import url
 urlpatterns = [
     path('loggedin/', views.loggedin, name='loggedin'),
     path('register/', views.create, name='create'),
-    url(r'register_2/',views.create_customer, name='create_customer'),
+    url(r'edit/',views.edit_customer, name='edit_customer'),
     path('login/', auth_views.LoginView.as_view()),
     path('logout/', auth_views.LogoutView.as_view()),
 ]
