@@ -47,6 +47,9 @@ def index(request,id):
 									order_car = car_data,
 								)
 			print('saved')
+			car_obj = car_data
+			car_obj.car_in_use = 1
+			car_obj.save()
 			return HttpResponseRedirect(reverse('thanks_page'))
 		else:
 			form = ReserveForm(initial=initial_data)

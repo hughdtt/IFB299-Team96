@@ -140,8 +140,20 @@ def analytics(request):
 
 def store(request):
     getData = request.GET
+    idGet = int(getData.get("id",default="0"))
     storeGet = int(getData.get("Store",default="1"))
     stores = Stores.objects.values('store_id','store_name').order_by('store_name').distinct()
+    if(idGet > 0):
+        order_to_modify = Orders.objects.get(order_id=idGet)
+        status = order_to_modify.order_status
+        if(status == 1):
+            status = 2
+        else:
+            status = 3
+            order_to_modify.order_car.car_in_us = 0
+            order_to_modify.order_car.save()
+        order_to_modify.order_status = status
+        order_to_modify.save()
     topickup = Orders.objects.filter(order_pickupstore=storeGet).filter(order_status=1)
     todropoff = Orders.objects.filter(order_returnstore=storeGet).filter(order_status=2)
     print(topickup)

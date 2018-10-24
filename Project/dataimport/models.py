@@ -81,6 +81,7 @@ class Cars(models.Model):
     car_bodytype = models.CharField(max_length = 20,blank=True)
     car_drive = models.CharField(max_length = 5,blank=True)
     car_wheelbase = models.CharField(max_length=10,blank=True)
+    car_in_use = models.IntegerField(default = 0)
     comment_body = models.TextField(blank=True)
     comments = GenericRelation(Reviews)
     def __str__(self):  #Returns the car's make
