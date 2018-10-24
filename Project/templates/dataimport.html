@@ -2,13 +2,14 @@
 
 {% block content %}
 <div class="py-5 text-center">
-	<h3>Click on the link to import Data</h3>
+  <h3>Click on the link to import Data</h3>
+  <br/>
 <form method="get">
   <input type="submit" class="btn btn-primary" value="Import Central Data From CSV" name="print_btn">
 </form>
-<br/>
-<form method="get">
-  <input type="submit" class="btn btn-primary" value="Import Store Data From CSV" name="store_btn">
-</form>
+<!--<br/>
+  <form method="get">
+  <input type="submit" disabled class="btn btn-primary" value="Import Store Data From CSV (broken, not required)" name="store_btn">
+</form>-->
 </div>
 {% endblock %}
