@@ -27,7 +27,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
     path('dataimport/' , include('dataimport.urls'), name='dataimport'),
-    path('userprofile/', include('userprofile.urls'))
+    path('userprofile/', include(('userprofile.urls', 'userprofile'), namespace ='userprofile'))
     
 
 

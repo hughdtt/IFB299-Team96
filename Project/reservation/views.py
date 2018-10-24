@@ -18,7 +18,6 @@ def index(request,id):
 	#order_id = request.Orders.order_id
 	car_name = id
 	account_name = request.user
-	print(account_name)
 	initial_data = {
 		#"order_id" : order_id,
 		"order_car" : car_name,
@@ -28,6 +27,7 @@ def index(request,id):
 
 	if request.method == "POST":
 		form = ReserveForm(request.POST or None, initial=initial_data)
+		print('something')
 		if form.is_valid():
 			order_id = form.cleaned_data.get("order_id")
 			pickup_data = form.cleaned_data.get("order_pickupdate")
@@ -46,6 +46,7 @@ def index(request,id):
 									order_customer = account_name,
 									order_car = car_data,
 								)
+			print('saved')
 			return HttpResponseRedirect(reverse('thanks_page'))
 		else:
 			form = ReserveForm(initial=initial_data)
@@ -57,6 +58,7 @@ def index(request,id):
 	return render(request, 'reservation/test.html', context)
 
 def details(request, id):
+	review_form = ReviewForm()
 	#Calls Specific Car details
 	instance = get_object_or_404(Cars, car_id=id)
 

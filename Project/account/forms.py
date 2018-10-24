@@ -7,6 +7,8 @@ class ProfileForm(forms.ModelForm):
 	class Meta:
 		model = Customers 
 		fields= '__all__'
+		exclude = ('user',)
+
 		widgets = {
 			'customer_birthday' : forms.DateInput(attrs={'type': 'date'}),
 
