@@ -7,7 +7,6 @@ from django.db.models import Q
 from django.db import connection
 from dataimport.models import Cars, Stores
 from django.template.response import TemplateResponse
-from .forms import RecommendForm
 
 
 
@@ -19,20 +18,33 @@ def index(request):
     return render(request, 'search/searchpage.html', {'Cars': carData})
 
 def recommendation(request):
-    form = RecommendForm()
-    array = ['family', 'adventure', 'trade', 
-            'prestige', 'eco', 'value', 
-            'performance', 'safety', 'comfort' ,
-            'space' ,  
-            ]
-    array_length = len(array)
-    for i in range(array_length):
-        if str(array[i]) in request.GET:
-            print(array[i])
-            return HttpResponseRedirect(reverse('search:results'))
+    querylist = Cars.objects.all().exclude(car_drive="NULL")
+
+    dropdownPrice = request.GET.get("dropdownPrice")
+    dropdownLength = request.GET.get("dropdownLength")
+    print(dropdownPrice)
+    print(dropdownLength)
+    if dropdownPrice == 'expensive':
+        print(dropdownPrice)
+        if dropdownLength == 'less':
+            querylist = querylist.filter(
+                Q(car_make__icontains='Honda')).distinct()
+        else:
+            querylist = querylist.filter(
+                Q(car_make__icontains='Alfa Romeo')).distinct()
+    if dropdownPrice == 'cheap':
+        print(dropdownPrice)
+        if dropdownLength == 'less':
+            querylist = querylist.filter(
+                Q(car_make__icontains='Toyota')).distinct()
+        else:
+          if dropdownLength == 'less':
+            querylist = querylist.filter(
+                Q(car_make__icontains='Land Rover')).distinct()  
+
 
     context = {
-    'form': form,
+    'searchedcars': querylist,
     }
 
     return render(request, 'search/recommendation.html', context)
@@ -68,6 +80,7 @@ def search(request):
     dropdownDrive = request.GET.get("dropdownDrive")
 
     if dropdownMake:
+        print(dropdownMake)
         querylist = querylist.filter(
             Q(car_make__icontains=dropdownMake)).distinct()
     
