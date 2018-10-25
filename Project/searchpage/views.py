@@ -18,8 +18,8 @@ def index(request):
     return render(request, 'search/searchpage.html', {'Cars': carData})
 
 def recommendation(request):
-    querylist = Cars.objects.all().exclude(car_drive="NULL").order_by('car_make')
-
+    querylist = Cars.objects.all().exclude(car_make="NULL").order_by('car_make')
+    querylist = querylist.filter(car_in_use = 0)
     dropdownPrice = request.GET.get("dropdownPrice")
     dropdownLength = request.GET.get("dropdownLength")
     print(dropdownPrice)
@@ -63,7 +63,8 @@ def recommendation(request):
 
 def search(request):  
     query = request.GET.get("query")
-    querylist = Cars.objects.all().exclude(car_drive="NULL")
+    querylist = Cars.objects.all().exclude(car_make="NULL")
+    querylist = querylist.filter(car_in_use = 0)
 
     make = Cars.objects.values('car_make').exclude(car_make="NULL").order_by('car_make').distinct()
     model = Cars.objects.values('car_model').exclude(car_model="NULL").order_by('car_model').distinct()
