@@ -7,11 +7,11 @@ from django.db import models
 from datetime import date
 from .fusioncharts import FusionCharts
 import calendar
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
+from django.contrib.admin.views.decorators import staff_member_required
 
-
-
-class ManagementPageView(LoginRequiredMixin, TemplateView):
+@method_decorator(staff_member_required, name='dispatch')
+class ManagementPageView(TemplateView):
     login_url = '/account/login'
     template_name = 'management.html'
     
