@@ -8,28 +8,27 @@
 	<h2>What Car should you rent?</h2>
         <p class="lead">Guide to renting a car</p>
     </div>
-
-        	<hr class="mb-4">
-
-            <h4 class="mb-3">What type of car are you looking for?</h4>
-
 		<div class="py-5 text-left">
 			<form action="", method ="GET">
-			<div class="form-inline py-3 b border-bottom border-white justify-content-md-center">                       
-                            <select id="carMake" name='dropdownPrice' class="form-control col-lg-3 col-md-4">
+				<h5 class="mb-3">Are you looking for an expensive or cheap car?</h5>  
+			<div class="form-inline py-3 b border-bottom">                   
+                            <select id="dropdownPrice" name='dropdownPrice' class="form-control col-lg-3 col-md-4">
                                 <option value="" disabled selected>Option...</option>
                                 <option value="expensive">Expensive</option>
                                 <option value="cheap">Cheap</option>
                             </select>
-
-                            <select id="carModel" name='dropdownLength' class="form-control col-lg-3 col-md-4">
+                        </div>
+                        <br/>
+                    <h5 class="mb-3">How long are you planning to rent?</h5> 
+            <div class="form-inline py-3 b border-bottom">
+                            <select id="dropdownLength" name='dropdownLength' class="form-control col-lg-3 col-md-4">
                                 <option value="" disabled selected>Option...</option>
                                 <option value='less'>Less Than 2 Weeks</option>
                                 <option value='more'>More Than 2 Weeks</option>
                             </select>
-            </div>
+            			</div>
 
-			
+				<br/>
 				<input type="submit" class="btn btn-primary" value="Submit">
 			</form>
 	    </div>

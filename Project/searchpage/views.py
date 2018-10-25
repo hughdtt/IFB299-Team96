@@ -18,7 +18,7 @@ def index(request):
     return render(request, 'search/searchpage.html', {'Cars': carData})
 
 def recommendation(request):
-    querylist = Cars.objects.all().exclude(car_drive="NULL")
+    querylist = Cars.objects.all().exclude(car_drive="NULL").order_by('car_make')
 
     dropdownPrice = request.GET.get("dropdownPrice")
     dropdownLength = request.GET.get("dropdownLength")
@@ -28,19 +28,31 @@ def recommendation(request):
         print(dropdownPrice)
         if dropdownLength == 'less':
             querylist = querylist.filter(
-                Q(car_make__icontains='Honda')).distinct()
+                Q(car_make__icontains='Alfa Romeo') |
+                Q(car_make__icontains='Audi') |
+                Q(car_make__icontains='BMW') |
+                Q(car_make__icontains='Chrysler')).distinct()
         else:
             querylist = querylist.filter(
-                Q(car_make__icontains='Alfa Romeo')).distinct()
+                Q(car_make__icontains='Land Rover') |
+                Q(car_make__icontains='Mercedes-Benz') |
+                Q(car_make__icontains='Volvo')).distinct()
     if dropdownPrice == 'cheap':
         print(dropdownPrice)
         if dropdownLength == 'less':
             querylist = querylist.filter(
-                Q(car_make__icontains='Toyota')).distinct()
+                Q(car_make__icontains='Euno') |
+                Q(car_make__icontains='Honda') |
+                Q(car_make__icontains='Mazda') |
+                Q(car_make__icontains='Mitsubishi') |
+                Q(car_make__icontains='Nissan')).distinct()
         else:
-          if dropdownLength == 'less':
             querylist = querylist.filter(
-                Q(car_make__icontains='Land Rover')).distinct()  
+                Q(car_make__icontains='Peugot') |
+                Q(car_make__icontains='Renault') |
+                Q(car_make__icontains='Saab') |
+                Q(car_make__icontains='Toyota') |
+                Q(car_make__icontains='Volkswagen')).distinct()  
 
 
     context = {
@@ -48,16 +60,6 @@ def recommendation(request):
     }
 
     return render(request, 'search/recommendation.html', context)
-
-def results(request):
-    querylist = Cars.objects.all().exclude(car_drive="NULL")
-    querylist = querylist.filter(
-            Q(car_make__icontains='Honda') |
-            Q(car_make__icontains='Toyota')).distinct()
-    context = {
-        'searchedcars': querylist, 
-    }
-    return render(request, 'search/results.html', context)
 
 def search(request):  
     query = request.GET.get("query")

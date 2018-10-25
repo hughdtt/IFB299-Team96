@@ -17,6 +17,7 @@
             <option value="{{s.store_id}}" {% if selectedStore == s.store_id %} selected {% endif %}> {{ s.store_name }} </option>
             {% endfor %}
           </select>
+          <br/>
           <input type="submit" class="btn btn-primary" value="Submit">
     <p>
     <h5> Please select a car that has been picked up, or dropped off, then click submit to process the order!</h5>
@@ -24,13 +25,14 @@
     <div class="row">
       <div class="col-md">
         <h4>Placed orders</h4>
-        <table>
-          <th>Pick up date</th>
-          <th>Order ID</th>
-          <th>Customer Name</th>
-          <th>Car ID</th>
-          <th>Car Model</th>
-          <th>Click to pick up</th>
+        <br/>
+        <table class="table table-bordered table-hover">
+          <th scope="col">Pick up date</th>
+          <th scope="col">Order ID</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Car ID</th>
+          <th scope="col">Car Model</th>
+          <th scope="col">Click to pick up</th>
           <tr>
             <td>None</td><td></td><td></td><td></td>
             <td>
@@ -45,7 +47,7 @@
             <td>{{order.order_car}}</td>
             <td>{{order.order_car.car_model}}</td>
             <form action="" method="GET">
-            <td><input name='id' type="radio" class="btn btn-primary" value="{{order.order_id}}"></button></td>
+            <td><br/><input name='id' type="radio" class="btn btn-primary" value="{{order.order_id}}"></button></td>
           </tr>
           {% endfor %}
         </table>
@@ -53,13 +55,14 @@
       </div>
       <div class="col-md">
           <h4>Active orders</h4>
-          <table>
-              <th>Return date</th>
-              <th>Order ID</th>
-              <th>Customer Name</th>
-              <th>Car ID</th>
-              <th>Car Model</th>
-              <th>Click to return</th>
+          <br/>
+          <table class="table table-bordered">
+              <th scope="col">Return date</th>
+              <th scope="col">Order ID</th>
+              <th scope="col">Customer Name</th>
+              <th scope="col">Car ID</th>
+              <th scope="col">Car Model</th>
+              <th scope="col">Click to return</th>
               {% for order in todropoff %}
               <tr>
                 <td>{{order.order_returndate}}</td>
