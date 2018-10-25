@@ -38,12 +38,12 @@ class ReserveForm(forms.ModelForm):
 	    self.helper.form_class = 'form-horizontal'
 	    self.helper.label_class = 'col-sm-3'
 	    self.helper.field_class = 'col-sm-9'
-	    self.helper.add_input(Submit('submit', 'Confirm Checkout'))
+	    self.helper.add_input(Submit('submit', 'Confirm Checkout', css_class='col-sm-12 btn'))
 
 class ReviewForm(forms.Form):
 	content_type = forms.CharField(widget=forms.HiddenInput)
 	object_id = forms.IntegerField(widget=forms.HiddenInput)
-	content = forms.CharField(widget=forms.Textarea)
+	content = forms.CharField(widget=forms.Textarea(), label='')
 
 
 

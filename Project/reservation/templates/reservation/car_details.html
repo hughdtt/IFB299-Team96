@@ -4,38 +4,60 @@
 
 {% block content %}
 <div class="py-5 text-center">
-        <h2>Car Details</h2>
-        <p class="lead">Details Below</p>
-        	<li class="text-muted">
-        		<h6 class="my-0">Brand: {{car.car_make}}</h6>
-        		<h6 class="my-0">Model: {{car.car_model}}</h6>
-        		<h6 class="my-0">Series: {{car.car_series}}</h6>
-        		<h6 class="my-0">Year: {{car.car_seriesyear}}</h6>
-        		<h6 class="my-0">Price: ${{car.car_pricenew}}</h6>
-        		<h6 class="my-0">Engine Size: {{car.car_enginesize}}</h6>
-        		<h6 class="my-0">Tank Capacity: {{car.car_tankcapacity}}</h6>
-        		<h6 class="my-0">Power: {{car.car_power}}</h6>
-        		<h6 class="my-0">Seating Capacity: {{car.car_seatingcapacity}}</h6>
-        		<h6 class="my-0">Transmission: {{car.car_standardtransmission}}</h6>
-        		<h6 class="my-0">Body Type: {{car.car_bodytype}}</h6>
-        		<h6 class="my-0">Car Drive: {{car.car_drive}}</h6>
-        		<h6 class="my-0">Wheelbase: {{car.car_wheelbase}}</h6>
-        	</li>
+    <div class="jumbotron text-center">
+        <h1>{{car.car_make}} {{car.car_model}} / {{car.car_series}}</h1>
+    </div>
+        <br/>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Year</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Engine Size</th>
+                  <th scope="col">Tank Capacity</th>
+                  <th scope="col">Power</th>
+                  <th scope="col">Seating Capacity</th>
+                  <th scope="col">Transmission</th>
+                  <th scope="col">Body Type</th>
+                  <th scope="col">Car Drive</th>
+                  <th scope="col">Wheelbase</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{{car.car_seriesyear}}</td>
+                  <td>${{car.car_pricenew}}</td>
+                  <td>{{car.car_enginesize}}</td>
+                  <td>{{car.car_tankcapacity}}</td>
+                  <td>{{car.car_power}}</td>
+                  <td>{{car.car_seatingcapacity}}</td>
+                  <td>{{car.car_standardtransmission}}</td>
+                  <td>{{car.car_bodytype}}</td>
+                  <td>{{car.car_drive}}</td>
+                  <td>{{car.car_wheelbase}}</td>
+                </tr>
+              </tbody>
+            </table>
+
               <br/>
         <form action="{% url 'reservation:index' car.car_id %}", method ="POST">
         	{% csrf_token %}
-        	<input type="submit" class='btn btn-primary' value="Reserve">
-        </form>
-          <br/>
-	<p class="lead">Leave a Review Below</p>
+        	<input type="submit" class='col-md-7 btn btn-primary' value="Reserve Now!">
+        </form> 
+        <br/>
+        <br/>
     <div>
+    <h4 class="mb-1">Leave a review below!</h4> 
+    <hr class="mb-4">
         <form method='POST' action='{% url 'reservation:details' car.car_id %}'> {% csrf_token %}
             {{review_form |crispy }}
-            <input type='submit' value="Post Review" class='btn btn-primary'>
+            <input type='submit' value="Post Review" class='col-md-7 btn btn-primary'>
         <br/>
         <br/>
         {% for review in review %}
-        <blockquote class="blockquote text-right">
+        <blockquote class="blockquote text-left">
         <p class="mb-0">{{ review.content }}</p>
         <footer class="blockquote-footer">via {{ review.author}} | {{ review.timestamp|timesince }} ago </footer>
          </blockquote>
