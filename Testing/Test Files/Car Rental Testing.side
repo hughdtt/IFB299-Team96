@@ -2385,21 +2385,21 @@
     "id": "1d0c3bf7-cc77-4576-805c-c771a94e9cad",
     "name": "Car Review Test",
     "commands": [{
-      "id": "a29d43fc-fa9c-488b-a0af-63e6f0e228bd",
+      "id": "874ad2fb-edac-463a-a987-c97ce66a3335",
       "comment": "",
       "command": "open",
       "target": "/",
       "targets": [],
       "value": ""
     }, {
-      "id": "a0ee869e-3ec9-4a8c-aea1-a3c8c8057506",
+      "id": "66ca84f5-8037-4c16-8543-37653542a33d",
       "comment": "",
       "command": "setWindowSize",
       "target": "1680x1050",
       "targets": [],
       "value": ""
     }, {
-      "id": "6e860dd2-9fc5-4e5d-85fb-ee7c619a77a6",
+      "id": "2972d718-b06c-4b4d-98fc-047bb4b763ce",
       "comment": "",
       "command": "click",
       "target": "linkText=Login",
@@ -2413,7 +2413,7 @@
       ],
       "value": ""
     }, {
-      "id": "0672f016-4364-478a-bab9-d7344dc21f1d",
+      "id": "78276ca9-d055-49d0-b40a-a51c1e2b97f5",
       "comment": "",
       "command": "type",
       "target": "id=id_username",
@@ -2428,7 +2428,7 @@
       ],
       "value": "johndoe123"
     }, {
-      "id": "5814ab8c-b409-467f-9221-4182d14c96d6",
+      "id": "22184c6d-681d-4d7e-bfb8-7d2d2c7cc99e",
       "comment": "",
       "command": "click",
       "target": "id=id_password",
@@ -2443,7 +2443,7 @@
       ],
       "value": ""
     }, {
-      "id": "53d498f8-7096-49fe-b1c6-fc58ff184357",
+      "id": "8e9ffd4d-b5d9-4146-9b0d-8ace8e2f17b2",
       "comment": "",
       "command": "type",
       "target": "id=id_password",
@@ -2458,7 +2458,7 @@
       ],
       "value": "Helloworldqut123"
     }, {
-      "id": "e99414c2-2f1b-436a-919f-068f4b9ca524",
+      "id": "e62a7412-de20-4955-aab7-cb6d398fd3d6",
       "comment": "",
       "command": "click",
       "target": "css=button.btn.btn-primary",
@@ -2470,7 +2470,7 @@
       ],
       "value": ""
     }, {
-      "id": "ac190ddf-a9a3-4cea-9460-f77ee5af9702",
+      "id": "368cf058-4dbe-4163-a8d2-d794e91f6e7a",
       "comment": "",
       "command": "click",
       "target": "linkText=Search Car",
@@ -2484,7 +2484,7 @@
       ],
       "value": ""
     }, {
-      "id": "6d6ef01c-03c1-4e18-b13f-f3aa9a542dfb",
+      "id": "d291c301-ec52-428c-82da-d75a6926ee5e",
       "comment": "",
       "command": "click",
       "target": "name=query",
@@ -2498,7 +2498,7 @@
       ],
       "value": ""
     }, {
-      "id": "56d917de-953d-4810-ba9d-68c1afaef78c",
+      "id": "b96227ca-e367-4de2-a85d-c69d1a0a1257",
       "comment": "",
       "command": "type",
       "target": "name=query",
@@ -2512,7 +2512,7 @@
       ],
       "value": "bmw"
     }, {
-      "id": "fb1510c2-4320-43e8-9e41-ebb2b113da8d",
+      "id": "72beede1-1101-4628-899a-a5534d59ecee",
       "comment": "",
       "command": "sendKeys",
       "target": "name=query",
@@ -2526,7 +2526,7 @@
       ],
       "value": "${KEY_ENTER}"
     }, {
-      "id": "f699d90d-acea-4d9c-bc44-e1b12b402176",
+      "id": "10b5433f-c671-4228-a499-0adc81c6cbbf",
       "comment": "",
       "command": "click",
       "target": "id=carYear",
@@ -2540,14 +2540,14 @@
       ],
       "value": ""
     }, {
-      "id": "98485b82-2e40-4941-ba55-ffe4c02ef07e",
+      "id": "0cecee42-62d9-409e-94fb-9f4a4be97044",
       "comment": "",
       "command": "select",
       "target": "id=carYear",
       "targets": [],
       "value": "label=2006"
     }, {
-      "id": "22a8072d-f8f4-4a31-ab43-70b11316806c",
+      "id": "c36d9d27-0fe5-49d9-9488-b639e7ebd193",
       "comment": "",
       "command": "click",
       "target": "css=#carYear > option:nth-child(33)",
@@ -2558,7 +2558,7 @@
       ],
       "value": ""
     }, {
-      "id": "5c301a2d-1003-4923-b9ea-859abd576b63",
+      "id": "a14487b2-7262-497a-88dc-77973f3ae75d",
       "comment": "",
       "command": "click",
       "target": "css=.my-4",
@@ -2569,7 +2569,7 @@
       ],
       "value": ""
     }, {
-      "id": "50030166-418f-40e9-8dc4-e6fc56cee936",
+      "id": "aafbc1cc-ea2b-4a3a-af57-a7281e28c5a3",
       "comment": "",
       "command": "click",
       "target": "css=.col-sm-12:nth-child(4) .card-title:nth-child(2)",
@@ -2579,7 +2579,7 @@
       ],
       "value": ""
     }, {
-      "id": "9840671f-f765-45d0-a287-7090b45c5a77",
+      "id": "38f3d279-8d08-401e-887b-7d58aaadb848",
       "comment": "",
       "command": "click",
       "target": "id=id_content",
@@ -2594,7 +2594,7 @@
       ],
       "value": ""
     }, {
-      "id": "e6d91e95-0b6f-4475-a967-c846529c3e1d",
+      "id": "58095c12-8d5b-4914-8171-7d5c749516d4",
       "comment": "",
       "command": "type",
       "target": "id=id_content",
@@ -2607,9 +2607,9 @@
         ["xpath=//div[@id='div_id_content']/div/textarea", "xpath:idRelative"],
         ["xpath=//textarea", "xpath:position"]
       ],
-      "value": "This car was a fantastic hire!"
+      "value": "This car is a fantastic rental!!!"
     }, {
-      "id": "da92a33b-ebad-4b87-8b6f-317a56487e69",
+      "id": "993ee184-867e-4de7-a370-f2d13c181e98",
       "comment": "",
       "command": "click",
       "target": "css=.col-md-7:nth-child(5)",
@@ -2620,18 +2620,18 @@
       ],
       "value": ""
     }, {
-      "id": "13bfd43d-4f60-41e5-9458-79cfb2978f16",
-      "comment": "Successfully reviewed car rental",
+      "id": "48162c16-9f5b-4993-be5d-de632446a3d1",
+      "comment": "Customer successfully commented on car with timestamp",
       "command": "//assertText",
-      "target": "css=h4.mb-1",
+      "target": "css=p.mb-0",
       "targets": [
-        ["css=h4.mb-1", "css"],
-        ["css=div > .mb-1", "css:finder"],
-        ["xpath=//h4", "xpath:position"]
+        ["css=p.mb-0", "css"],
+        ["css=.mb-0", "css:finder"],
+        ["xpath=//p", "xpath:position"]
       ],
-      "value": ""
+      "value": "This car is a fantastic rental!!! via johndoe123 | 0 minutes ago\\n"
     }, {
-      "id": "6db1e191-b775-4d8e-8f3a-32c6d7107dbc",
+      "id": "be35de3c-ff41-47c1-9d63-3460dffaceb5",
       "comment": "",
       "command": "click",
       "target": "linkText=Logout",
