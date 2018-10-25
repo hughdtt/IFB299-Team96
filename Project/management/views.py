@@ -150,7 +150,7 @@ def store(request):
             status = 2
         else:
             status = 3
-            order_to_modify.order_car.car_in_us = 0
+            order_to_modify.order_car.car_in_use = 0
             order_to_modify.order_car.save()
         order_to_modify.order_status = status
         order_to_modify.save()
