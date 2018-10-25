@@ -76,23 +76,25 @@ def details(request, id):
 		"object_id": object_id,
 
 	}
-	if request.method == "POST":
-		review_form = ReviewForm(request.POST, initial=initial_data)
-		if review_form.is_valid():
-			c_type = review_form.cleaned_data.get("content_type")
-			content_type = ContentType.objects.get(model=c_type)
-			obj_id = review_form.cleaned_data.get("object_id")
-			content_data = review_form.cleaned_data.get("content")
-			new_review, created = Reviews.objects.get_or_create(
-										author = request.user,
-										content_type = content_type,
-										object_id = obj_id,
-										content = content_data
-									)
-			print('success')
-		else:
-			review_form = ReviewForm(initial=initial_data)
-			print('no')
+	#Calls the ReviewForm from forms.py applying initial data from above
+	review_form = ReviewForm(request.POST, initial=initial_data)
+	if review_form.is_valid():
+		c_type = review_form.cleaned_data.get("content_type")  # Get Content_type
+		content_type = ContentType.objects.get(model=c_type) # Get Content_type
+		obj_id = review_form.cleaned_data.get("object_id") # Get Object ID
+		content_data = review_form.cleaned_data.get("content") # Get the Content / Review Message
+		new_review, created = Reviews.objects.get_or_create(
+									author = request.user,
+									content_type = content_type,
+									object_id = obj_id,
+									content = content_data
+								)
+		#Creates the new message and saves it
+		print('success')
+	else:
+		#if the form is not valid, it will just initiate the clean form again
+		review_form = ReviewForm(initial=initial_data)
+		print('no')
 
 	context = {
 		'car' : instance,
