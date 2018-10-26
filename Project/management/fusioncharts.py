@@ -1,3 +1,4 @@
+#Fusion charts provided code, not written by IFB299 group
 from django.http import HttpResponse
 import json
 

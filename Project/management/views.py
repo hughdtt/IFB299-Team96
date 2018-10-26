@@ -15,7 +15,7 @@ class ManagementPageView(TemplateView):
     login_url = '/account/login'
     template_name = 'management.html'
     
-
+#Generates the graph, some comments are provided by FusionCharts and are kept in, as they explain it better
 def analytics(request):
     
     stores = Stores.objects.values('store_name').order_by('store_name').distinct().values_list('store_name',flat=True)
@@ -138,6 +138,7 @@ def analytics(request):
         
     return  render(request, 'analytics.html', {'output' : column2D.render(), 'years' : years, 'stores' : stores, 'granularity' : granularity, 'months' : months})
 
+#Returns the information regarding the store i.e. pickup and return information
 def store(request):
     getData = request.GET
     idGet = int(getData.get("id",default="0"))
