@@ -62,16 +62,13 @@ def edit_customer(request):
 	print(customers)
 	
 	if request.method == 'POST':
-		profile_form = ProfileForm(request.POST or None, instance = customers)
-
-		print('something')
+		profile_form = ProfileForm(request.POST or None, instance=customers)
 		if profile_form.is_valid():  # Reload the profile form with the profile instance
 			profile_form.full_clean()
 			profile_form.save()
 			print('saved')
-
 	else:
-		profile_form = ProfileForm(instance = customers)
+		profile_form = ProfileForm()
 
 	context = {
 		'profile_form' : profile_form
